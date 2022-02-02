@@ -1,2 +1,6 @@
-<h1>Designs#new</h1>
-<p>Find me in app/views/designs/new.html.erb</p>
+<h3>Designs#new</h3>
+<%= simple_form_for [ @portfolio, @design ] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.submit "Submit Bookmark", class: "btn btn-primary" %>
+<% end %>
