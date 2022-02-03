@@ -2,14 +2,13 @@ class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: %i[show edit update destroy]
 
   def index
-    @portfolios = Portfolio.all
-
     # if params[:query].present?
     #   @portfolios = policy_scope(Portfolio).where("title ILIKE ?  OR author ILIKE ?", "%#{params[:query]}%","%#{params[:query]}%")
     # # qu epusieron para las busquedas?
     # else
     #   @portfolios = policy_scope(Portfolio).order(created_at: :desc)
     # end
+    @portfolios = Portfolio.includes(:user)
   end
 
   def show
@@ -26,6 +25,7 @@ class PortfoliosController < ApplicationController
     # }
     # end
     # authorize @portfolio
+    @portfolio = Portfolio.find(params[:id])
   end
 
   def new
