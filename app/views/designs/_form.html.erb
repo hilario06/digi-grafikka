@@ -1,0 +1,10 @@
+<%= simple_form_for([ portfolio, design ],
+              data: {
+                insert_design_in_list_target: 'form',
+                action: 'submit->insert-design-in-list#send'
+              }) do |f| %>
+
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.submit "Guardar", class: "btn btn-sm mt-2 btn-primary" %>
+<% end %>
