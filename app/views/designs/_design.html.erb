@@ -25,10 +25,10 @@
                 data: { confirm: "Are you sure?", action: "click->delete-design#delete" } %>
         <!--<%= button_to "delete", design, method: :delete, form_class: "inline",
         data: {action: "click->delete-design#delete"}, class: '' %>-->
+
       </li>
     </ul>
   </div>
-  <!--content de edit-->
 
   <%= simple_form_for design, html: { class: design.errors.any? ? '' : 'd-none',
   data: { edit_design_target: 'form', action: 'submit->edit-design#update' }

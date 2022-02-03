@@ -10,20 +10,10 @@ export default class extends Controller {
     console.log(this.element);
   }
 
-  /*update(event) {
-    event.preventDefault();
-    const url = this.formTarget.action
-    fetch(url, {
-      method: 'PATCH',
-      headers: { 'Accept': 'text/plain' },
-      body: new FormData(this.formTarget)
-    })
-      .then(response => response.text())
-      .then((data) => {
-        this.cardTarget.outerHTML = data;
-      })
-  }*/
   delete(event){
-    event.preventDefault();
+    // event.preventDefault();
+    console.log(window.scrollY);
+    const currentY = window.scrollY;
+    window.scrollTo(0, currentY);
   }
 }

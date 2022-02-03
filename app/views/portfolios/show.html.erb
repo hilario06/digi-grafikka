@@ -1,22 +1,9 @@
-<div class="container-cuerpo">
-  <div class="container-sobre mt-4">
-    <%= cl_image_tag @portfolio.photo.key, height: 300, width: 400, crop: :fill, class: 'img-thumbnail'%>
-  </div>
-
-  <div class="container-info pt-5 pl-5 pr-4 pb-5 mt-4">
-    <div class="content-author">
-
-      <p><b>About</b> <%= @portfolio.about %></p>
-    </div>
-
-    <div class="">
-
-      <% if @portfolio.update? %>
-        <%= link_to '📝', edit_portfolio_path(@portfolio) %>
-      <% end %>
-      <% if @portfolio.destroy? %>
-        <%= link_to '🗑️', portfolio_path(@portfolio), method: :delete, data: { confirm: '¿Estás seguro?' } %>
-      <% end %>
-    </div>
+<div class="container">
+  <div>
+      <%= image_tag("diseno-grafico.jpg", class:"img-fluid mb-3 img-thumbnail shadow-sm") %>
+      <p><%= @portfolio.user.email %></p>
+      <p><%= @portfolio.total_likes %></p>
+      <p><%= @portfolio.stars_average %></p>
+      <%= link_to 'designs', portfolio_designs_path(@portfolio) %>
   </div>
 </div>

@@ -1,42 +1,15 @@
-<h1 class='portfolio-h1'>Encuentra tu portafolio</h1>
-<div class="portfolio-container">
 
-  <div class="text-right">
-    <%= link_to 'Agrega un portafolio', new_portfolio_path, class: 'btn btn-outline-primary mb-2' %>
-
-
-    <div class="auto-grid">
-      <% @portfolios.each do |portfolio| %>
-
-    <div class="card" style="box-shadow: 1px 2px 4px rgb(0 0 0 / 10%)">
-      <!--<%= link_to portfolio_path(portfolio) do %>
-
-            <%= cl_image_tag portfolio.photo.key, height: 300, width: 400, crop: :fill, class: 'img-thumbnail card-img-top'%>
-      <% end %>-->
-
-      <div class="card-body card-portfolio">
-        <p class="title-section text-center">
-          <%= portfolio.title %>
-          como hago q se vea el nombre del diseñador
-        </p>
-        <div class="author-portfolio">
-          <div class="author-portfolio-label">
-            <div>Autor:</div><p></p>
-          </div>
-          <div class='author-name'><%=portfolio.user.first_name %></div>
-        </div>
- <% end %>
-            <%= link_to 'Editar', edit_portfolio_path(portfolio), class: 'btn btn-success-portfolio' %>
-
-
-            <%# <%= link_to '🗑️', book_path(book), method: :delete, data: { confirm: '¿Estás seguro?' } %>
-            <%= button_to "Eliminar", {:controller => :portfolio,
-                :action => 'destroy', :id => portfolio.id }, :method => :delete,
-                 class: 'btn btn-danger-portfolio' %>
-
-        </div>
-
-
+<div class="container">
+  <div class="auto-grid-designs">
+    <% @portfolios.each do |portfolio| %>
+      <div>
+        <%= image_tag("diseno-grafico.jpg", class:"img-fluid mb-3 img-thumbnail shadow-sm") %>
+        <p><%= portfolio.user.email %></p>
+        <p><%= portfolio.total_likes %></p>
+        <p><%= portfolio.stars_average %></p>
+        <%= link_to 'perfil', portfolio_path(portfolio) %>
+        <%= link_to 'designs', portfolio_designs_path(portfolio) %>
       </div>
-    </div>
+    <% end %>
+  </div>
 </div>
