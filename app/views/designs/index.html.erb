@@ -1,37 +1,41 @@
 <div class="container" data-controller="insert-design-in-list" data-insert-in-list-position-value="beforeend">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item"><a href="#">Library</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Data</li>
+      <li class="breadcrumb-item">
+        <%= link_to 'Home', root_path, class: 'breadcrumb-item' %>
+      </li>
+      <li class="breadcrumb-item">
+        <%= link_to 'Diseñadores', portfolios_path, class: 'breadcrumb-item' %>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Diseños</li>
     </ol>
   </nav>
-
-<!-- Button trigger modal -->
-<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Nuevo Diseño
-</button>-->
-
-<!-- Modal -->
-<%= render 'form', portfolio: @portfolio, design: @design %>
-<!--
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nuevo Diseño</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-
+  <p>
+    <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      Nuevo
+    </a>
+  </p>
+  <div class="collapse mb-3" id="collapseExample">
+    <div class="card card-body">
+      <%= render 'form', portfolio: @portfolio, design: @design %>
     </div>
   </div>
-</div>-->
 
-  <div class="auto-grid-designs" data-insert-design-in-list-target="items">
-    <% @designs.each do |design| %>
-      <%= render 'design', design: design %>
+
+  <div data-controller="search-designs">
+    <%= form_with url: portfolio_designs_path(@portfolio),
+    method: :get, html: { class: 'mb-4', data: { search_designs_target: 'searchForm' } } do |f| %>
+      <%= f.text_field :query,
+                        class: "form-control",
+                        placeholder: 'Search design',
+                        value: params[:query],
+                        data: {
+                          search_designs_target: 'searchInput',
+                          action: 'keyup->search-designs#update'
+                        }
+                        %>
     <% end %>
-  </div>
 
+    <%= render 'list', designs: @designs %>
+  </div>
 </div>
