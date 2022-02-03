@@ -1,2 +1,37 @@
-<h1>Designs#index</h1>
-<p>Find me in app/views/designs/index.html.erb</p>
+<div class="container" data-controller="insert-design-in-list" data-insert-in-list-position-value="beforeend">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Library</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Data</li>
+    </ol>
+  </nav>
+
+<!-- Button trigger modal -->
+<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Nuevo Diseño
+</button>-->
+
+<!-- Modal -->
+<%= render 'form', portfolio: @portfolio, design: @design %>
+<!--
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo Diseño</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+    </div>
+  </div>
+</div>-->
+
+  <div class="auto-grid-designs" data-insert-design-in-list-target="items">
+    <% @designs.each do |design| %>
+      <%= render 'design', design: design %>
+    <% end %>
+  </div>
+
+</div>
