@@ -1,10 +1,29 @@
-<div class="container">
-  <div>
-    <%= image_tag("donald.png", class:"img-fluid mb-3 img-thumbnail shadow-sm") %>
-    <p><%= @portfolio.user.email %></p>
-    <p><%= @portfolio.total_likes %></p>
-    <p><%= @portfolio.stars_average %></p>
-    <p><%= @portfolio.about %></p>
-    <%= link_to 'designs', portfolio_designs_path(@portfolio) %>
+<div class="portfolios-container">
+  <div class='portfolios-banner'>
+    <%= image_tag("perfil.jpeg", class: 'portfolios-perfil') %>
+    <%= image_tag("background.png", class: 'portfolios-background') %>
+  </div>
+  <div class='portfolios-details'>
+    <p class='designer-name'>Jeanine Perez Saleño</p>
+    <p class='designer-description'>Freelance Brand and Logo Designer</p>
+    <p class='designer-location'>📍 Lima, Perú</p>
+    <div class='buttons-container'>
+      <%= link_to 'Sígueme', portfolio_designs_path(@portfolio), class: 'portfolios-btn' %>
+      <%= link_to 'Contáctame', portfolio_designs_path(@portfolio), class: 'portfolios-btn' %>
+    </div>
+    <div class='portfolios-designs'>
+      <%= link_to 'Mira mis diseños', portfolio_designs_path(@portfolio), class: 'designs-btn' %>
+    </div>
+    <div class='portfolios-card'>
+      <% @portfolio.designs.each do |design| %>
+        <div class="card">
+          <%= image_tag('diseno-grafico.jpg') %>
+          <div class="card-body">
+            <h5 class="card-title"><%= design.title %></h5>
+            <p class="card-text"><%= design.description %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

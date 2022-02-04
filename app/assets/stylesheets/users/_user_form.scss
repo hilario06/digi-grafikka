@@ -1,7 +1,12 @@
-.user-form {
-    margin: 50px auto;
-    padding: 20px;
-    width: 400px;
-    border: 1px solid black;
-    border-radius: 10px;;
+.user-form-container {
+    background-color: #F2E9E4;
+    padding: 50px;
+    .user-form {
+        background-color: white;
+        margin: 0 auto;
+        padding: 20px;
+        width: 400px;
+        border: 1px solid black;
+        border-radius: 10px;
+    }
 }
