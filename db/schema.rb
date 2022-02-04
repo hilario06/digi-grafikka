@@ -74,9 +74,10 @@ ActiveRecord::Schema.define(version: 2022_01_31_224710) do
 
   create_table "portfolios", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.float "total_likes"
-    t.float "stars_average"
+    t.float "total_likes", default: 0.0
+    t.float "stars_average", default: 0.0
     t.text "about"
+    t.integer "total_followers", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_portfolios_on_user_id"

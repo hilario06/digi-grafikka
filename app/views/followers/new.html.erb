@@ -1,2 +1,4 @@
 <h1>Followers#new</h1>
-<p>Find me in app/views/followers/new.html.erb</p>
+<%= simple_form_for [ @portfolio, @follower ] do |f| %>
+  <%= f.submit "Submit Follower", class: "btn btn-primary" %>
+<% end %>

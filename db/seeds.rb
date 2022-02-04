@@ -11,7 +11,11 @@ require 'faker'
   puts "Iniciando los seed"
 
   # portafolio 1
-  user1 = User.first
+  user1 = User.new(
+    email: 'hilario.huaman.6@gmail.com',
+    password: '123456',
+    password_confirmation: '123456')
+  user1.save
   portfolio1 = Portfolio.new(
                 total_likes: prng.rand(180..200),
                 stars_average: prng.rand(1..5),
@@ -30,7 +34,11 @@ require 'faker'
   end
 
  # portafolio 2
-  user2 = User.second
+  user2 = User.new(
+    email: 'dasly@gmail.com',
+    password: '123456',
+    password_confirmation: '123456')
+  user2.save
   portfolio2 = Portfolio.new(
                 total_likes: prng.rand(180..200),
                 stars_average: prng.rand(1..5),
@@ -49,7 +57,11 @@ require 'faker'
   end
 
   # portafolio 2
-  user3 = User.third
+  user3 = User.new(
+    email: 'hilario@gmail.com',
+    password: '123456',
+    password_confirmation: '123456')
+  user3.save
   portfolio3 = Portfolio.new(
                 total_likes: prng.rand(180..200),
                 stars_average: prng.rand(1..5),
