@@ -1,11 +1,5 @@
 
-<div class="container">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item breadcrumb-digi"><%= link_to 'Home', root_path, class: 'breadcrumb-item' %></li>
-      <li class="breadcrumb-item active" aria-current="page">Diseñadores</li>
-    </ol>
-  </nav>
+<div class="container my-4">
   <div class="auto-grid-designs">
     <% @portfolios.each do |portfolio| %>
       <div class="bg-white rounded shadow-sm pb-3 card card-index-porfios">

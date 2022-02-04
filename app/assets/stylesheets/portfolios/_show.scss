@@ -6,6 +6,9 @@
 .portfolios-banner {
     position: relative;
     margin-bottom: 125px;
+    img{
+      object-fit: cover;
+    }
 }
 
 .portfolios-perfil {
