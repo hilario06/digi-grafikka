@@ -10,14 +10,26 @@
     transition: all 0.3s;
     font-size: 0.9rem;
 }
-
 .social-link:hover, .social-link:focus {
     background: #ddd;
     text-decoration: none;
     color: #555;
 }
 
+
 .card-index-porfios{
+  .container-designs{
+    display: flex;
+    height: 85px;
+    div{
+      width: 50%;
+      img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
   .content-favorites-and-likes{
     display: flex;
     justify-content: space-between;
@@ -29,6 +41,12 @@
       }
     }
 
+  }
+  h6{
+    a{
+      text-decoration: none;
+      color: #000;
+    }
   }
   .button-card-portfolio{
     .seguir{

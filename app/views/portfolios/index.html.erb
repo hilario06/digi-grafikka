@@ -1,156 +1,51 @@
 
-<div class="container mb-4">
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Home', root_path, class: 'breadcrumb-item' %></li>
+      <li class="breadcrumb-item active" aria-current="page">Diseñadores</li>
+    </ol>
+  </nav>
   <div class="auto-grid-designs">
     <% @portfolios.each do |portfolio| %>
-    <div>
-      <%= image_tag("diseno-grafico.jpg", class:"img-fluid mb-3 img-thumbnail shadow-sm") %>
-      <p><%= portfolio.user.email %></p>
-      <p><%= portfolio.total_likes %></p>
-      <p><%= portfolio.stars_average %></p>
-      <%= link_to 'perfil', portfolio_path(portfolio) %> |
-      <%= link_to 'designs', portfolio_designs_path(portfolio) %>
-    </div>
+      <div class="bg-white rounded shadow-sm pb-3 card card-index-porfios">
+        <div class="container-designs">
+          <div>
+            <%= image_tag("diseno1.jpg", class:"") %>
+          </div>
+          <div>
+            <%= image_tag("diseno2.jpg", class:"") %>
+          </div>
+        </div>
+        <div class="text-center" style="margin-top: -30px">
+          <%= link_to portfolio_path(portfolio) do %>
+            <%= image_tag "teacher-4.jpg", width: 100, class: 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm' %>
+          <% end %>
+          <h6 class="mb-0">
+            <%= link_to 'Manuella Nevoresky', portfolio_path(portfolio) %>
+          </h6>
+          <span class="small text-muted"><i class="fas fa-map-marker-alt"></i> Melbourne, Australia</span>
+        </div>
+        <div class="content-favorites-and-likes mt-3 mx-3">
+          <div>
+            <p class="m-0 text-center">348</p>
+            <p class="small text-muted m-0 text-center">valoraciones</p>
+          </div>
+          <div class="text-muted">|</div>
+          <div>
+            <p class="m-0 text-center">200</p>
+            <p class="small text-muted m-0 text-center">seguidores</p>
+          </div>
+        </div>
+        <div class="button-card-portfolio mt-4">
+          <p class="text-center seguir">
+            <a href="#"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Seguir</a>
+          </p>
+          <p class="text-center mensaje">
+            <a href="#"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Mensaje</a>
+          </p>
+        </div>
+      </div>
     <% end %>
-  </div>
-</div>
-
-<div class="container">
-  <div class="auto-grid-designs">
-
-    <div class="bg-white rounded shadow-sm py-5 px-4 card card-index-porfios">
-      <div class="text-center">
-        <img src="https://bootstrapious.com/i/snippets/sn-team/teacher-4.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-        <h6 class="mb-0">Manuella Nevoresky</h6>
-        <span class="small text-muted"><i class="fas fa-map-marker-alt"></i> Melbourne, Australia</span>
-      </div>
-      <div class="content-favorites-and-likes mt-3">
-        <div>
-          <p class="m-0 text-center">348</p>
-          <p class="small text-muted m-0 text-center">valoraciones</p>
-        </div>
-        <div class="text-muted">|</div>
-        <div>
-          <p class="m-0 text-center">200</p>
-          <p class="small text-muted m-0 text-center">seguidores</p>
-        </div>
-      </div>
-      <div class="button-card-portfolio mt-4">
-        <p class="text-center seguir">
-          <a href="#"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Seguir</a>
-        </p>
-        <p class="text-center mensaje">
-          <a href="#"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Mensaje</a>
-        </p>
-      </div>
-
-    </div>
-
-    <div class="bg-white rounded shadow-sm py-5 px-4 card card-index-porfios">
-      <div class="text-center">
-        <img src="https://bootstrapious.com/i/snippets/sn-team/teacher-2.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-        <h6 class="mb-0">Samuel Hardy</h6>
-        <span class="small text-muted"><i class="fas fa-map-marker-alt"></i> Tyumen, Russian Federation</span>
-      </div>
-      <div class="content-favorites-and-likes mt-3">
-        <div>
-          <p class="m-0 text-center">348</p>
-          <p class="small text-muted m-0 text-center">valoraciones</p>
-        </div>
-        <div class="text-muted">|</div>
-        <div>
-          <p class="m-0 text-center">200</p>
-          <p class="small text-muted m-0 text-center">seguidores</p>
-        </div>
-      </div>
-      <div class="button-card-portfolio mt-4">
-        <p class="text-center seguir">
-          <a href="#"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Seguir</a>
-        </p>
-        <p class="text-center mensaje">
-          <a href="#"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Mensaje</a>
-        </p>
-      </div>
-    </div>
-
-    <div class="bg-white rounded shadow-sm py-5 px-4 card card-index-porfios">
-      <div class="text-center">
-        <img src="https://bootstrapious.com/i/snippets/sn-team/teacher-1.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-        <h6 class="mb-0">Tom Sunderland</h6>
-        <span class="small text-muted"><i class="fas fa-map-marker-alt"></i> São Paulo, Brazil</span>
-      </div>
-      <div class="content-favorites-and-likes mt-3">
-        <div>
-          <p class="m-0 text-center">348</p>
-          <p class="small text-muted m-0 text-center">valoraciones</p>
-        </div>
-        <div class="text-muted">|</div>
-        <div>
-          <p class="m-0 text-center">200</p>
-          <p class="small text-muted m-0 text-center">seguidores</p>
-        </div>
-      </div>
-      <div class="button-card-portfolio mt-4">
-        <p class="text-center seguir">
-          <a href="#"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Seguir</a>
-        </p>
-        <p class="text-center mensaje">
-          <a href="#"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Mensaje</a>
-        </p>
-      </div>
-    </div>
-
-    <div class="bg-white rounded shadow-sm py-5 px-4 card card-index-porfios">
-      <div class="text-center">
-        <img src="https://bootstrapious.com/i/snippets/sn-team/teacher-7.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-        <h6 class="mb-0 text-center">John Tarly</h6>
-        <span class="small text-muted"><i class="fas fa-map-marker-alt"></i> Nantes, France</span>
-      </div>
-      <div class="content-favorites-and-likes mt-3">
-        <div>
-          <p class="m-0 text-center">348</p>
-          <p class="small text-muted m-0 text-center">valoraciones</p>
-        </div>
-        <div class="text-muted">|</div>
-        <div>
-          <p class="m-0 text-center">200</p>
-          <p class="small text-muted m-0 text-center">seguidores</p>
-        </div>
-      </div>
-      <div class="button-card-portfolio mt-4">
-        <p class="text-center seguir">
-          <a href="#"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Seguir</a>
-        </p>
-        <p class="text-center mensaje">
-          <a href="#"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Mensaje</a>
-        </p>
-      </div>
-    </div>
-    <div class="bg-white rounded shadow-sm py-5 px-4 card card-index-porfios">
-      <div class="text-center">
-        <img src="https://bootstrapious.com/i/snippets/sn-team/teacher-7.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-        <h6 class="mb-0 text-center">John Tarly</h6>
-        <span class="small text-muted"><i class="fas fa-map-marker-alt"></i> Nantes, France</span>
-      </div>
-      <div class="content-favorites-and-likes mt-3">
-        <div>
-          <p class="m-0 text-center">348</p>
-          <p class="small text-muted m-0 text-center">valoraciones</p>
-        </div>
-        <div class="text-muted">|</div>
-        <div>
-          <p class="m-0 text-center">200</p>
-          <p class="small text-muted m-0 text-center">seguidores</p>
-        </div>
-      </div>
-      <div class="button-card-portfolio mt-4">
-        <p class="text-center seguir">
-          <a href="#"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Seguir</a>
-        </p>
-        <p class="text-center mensaje">
-          <a href="#"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Mensaje</a>
-        </p>
-      </div>
-    </div>
-
   </div>
 </div>
