@@ -1,5 +1,5 @@
 <div id="design-<%= design.id %>"
-  class="bg-white rounded shadow-sm py-4 px-4 text-center card card-design"
+  class="rounded shadow-sm py-4 px-4 text-center card card-design"
   data-controller="edit-design" data-edit-design-target="card">
 
   <!--content de edit-->
@@ -25,16 +25,16 @@
                 data: { confirm: "Are you sure?", action: "click->delete-design#delete" } %>
         <!--<%= button_to "delete", design, method: :delete, form_class: "inline",
         data: {action: "click->delete-design#delete"}, class: '' %>-->
+
       </li>
     </ul>
   </div>
-  <!--content de edit-->
 
   <%= simple_form_for design, html: { class: design.errors.any? ? '' : 'd-none',
   data: { edit_design_target: 'form', action: 'submit->edit-design#update' }
    } do |f| -%>
     <%= f.input :title %>
     <%= f.input :description %>
-    <%= f.submit "Update design", class: "btn btn-sm btn-primary btn-block mt-2" %>
+    <%= f.submit "Update design", class: "btn btn-sm btn-primary btn-block mt-2 button-digi-grafikka" %>
   <% end %>
 </div>

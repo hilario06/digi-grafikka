@@ -49,7 +49,7 @@ require 'faker'
   end
 
   # portafolio 2
-  user3 = User.second
+  user3 = User.third
   portfolio3 = Portfolio.new(
                 total_likes: prng.rand(180..200),
                 stars_average: prng.rand(1..5),
