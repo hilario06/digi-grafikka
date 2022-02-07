@@ -56,7 +56,7 @@ require 'faker'
     )
   end
 
-  # portafolio 2
+  # portafolio 3
   user3 = User.new(
     email: 'hilario@gmail.com',
     password: '123456',
@@ -73,6 +73,29 @@ require 'faker'
   prng.rand(3..6).times do
     Design.create(
       portfolio: portfolio3,
+      title: Faker::Book.title,
+      description: Faker::Book.author,
+      likes: prng.rand(10..30)
+    )
+  end
+
+    # portafolio 4
+  user4 = User.new(
+    email: 'hilario@gmail.com',
+    password: '123456',
+    password_confirmation: '123456')
+  user4.save
+  portfolio4 = Portfolio.new(
+                total_likes: prng.rand(180..200),
+                stars_average: prng.rand(1..5),
+                about: Faker::Books::Dune.quote,
+                user: user4
+              )
+  portfolio4.save
+
+  prng.rand(6..10).times do
+    Design.create(
+      portfolio: portfolio4,
       title: Faker::Book.title,
       description: Faker::Book.author,
       likes: prng.rand(10..30)
