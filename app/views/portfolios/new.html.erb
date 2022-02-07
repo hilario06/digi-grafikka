@@ -1,6 +1,8 @@
-<h1 class='book-h1'>Agrega un nuevo portafolio</h1>
-<br>
-<%= link_to 'Regresar', portfolios_path, class: 'portfolio-back' %>
-<div class='portfolio-form'>
-  <%= render 'form', portfolio: @portfolios %>
+<div class="container mb-3">
+  <h4 class='book-h1' style="color:white">Agrega un nuevo portafolio</h4>
+  <br>
+
+  <div class='portfolio-form'>
+    <%= render 'form', portfolio: @portfolio %>
+  </div>
 </div>

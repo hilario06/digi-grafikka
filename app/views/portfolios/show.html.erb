@@ -1,3 +1,6 @@
+
+
+
 <div class="portfolios-container">
   <div class='portfolios-banner'>
     <%= image_tag("perfil.jpeg", class: 'portfolios-perfil') %>
@@ -7,8 +10,14 @@
     <p class='designer-name'>Jeanine Perez Saleño</p>
     <p class='designer-description'>Freelance Brand and Logo Designer</p>
     <p class='designer-location'>📍 Lima, Perú</p>
-    <div class='buttons-container'>
-      <%= link_to 'Sígueme', portfolio_designs_path(@portfolio), class: 'portfolios-btn' %>
+    <div class='buttons-container' id="button-follower">
+      <% if user_signed_in? %>
+        <% if @portfolio.following?(current_user) %>
+          <%= button_to "Seguiendo", follow_path(@portfolio), method: "put", remote: true, class: 'portfolios-btn' %>
+        <% else %>
+          <%= button_to "Sígueme", follow_path(@portfolio), method: "put", remote: true, class: 'portfolios-btn' %>
+        <% end %>
+      <% end %>
       <%= link_to 'Contáctame', portfolio_designs_path(@portfolio), class: 'portfolios-btn' %>
     </div>
     <div class='portfolios-designs'>
@@ -21,6 +30,8 @@
           <div class="card-body">
             <h5 class="card-title"><%= design.title %></h5>
             <p class="card-text"><%= design.description %></p>
+            <%= render "portfolios/upvote_link", design: design %>
+            <%= render "portfolios/votes_score", design: design %>
           </div>
         </div>
       <% end %>

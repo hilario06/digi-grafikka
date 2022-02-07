@@ -1,6 +1,32 @@
 class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: %i[show edit update destroy]
 
+  def follow
+    @portfolio = Portfolio.all.find(params[:id])
+    if @portfolio.following?(current_user)
+      @follower = Follower.where(user_id: current_user.id)
+                          .and(Follower.where(portfolio_id: @portfolio.id))
+      @follower[0].destroy
+    else
+      Follower.create(user_id: current_user.id, portfolio_id: @portfolio.id)
+    end
+    redirect_to portfolio_path(@portfolio, anchor: "button-follower")
+  end
+
+  def is_portfolio
+    @portfolio = Portfolio.find_by(user_id: current_user.id)
+    if @portfolio
+      redirect_to portfolio_designs_path(@portfolio)
+    else
+      # redirect_to welcome_portfolios_path
+      redirect_to welcome_path
+    end
+  end
+
+  def welcome1
+
+  end
+
   def index
     # if params[:query].present?
     #   @portfolios = policy_scope(Portfolio).where("title ILIKE ?  OR author ILIKE ?", "%#{params[:query]}%","%#{params[:query]}%")
@@ -29,7 +55,7 @@ class PortfoliosController < ApplicationController
   end
 
   def new
-    @portfolio = Portfolios.new
+    @portfolio = Portfolio.new
     # authorize @portfolio
   end
 

@@ -1,13 +1,9 @@
 <%= simple_form_for(portfolio) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :title, label: 'Título:' %>
-    <%= f.input :description, label: 'Descripción:' %>
-    <%= f.input :category, label: 'Categoría:',
-                 :collection => %w[HTML CSS Photoshop Illustrator InDesign  Otro] %>
-    <%= f.input :photo, as: :file %>
+  <div class="form-inputs" style="color:white">
+    <%= f.input :about, label: 'Título:' %>
   </div>
 
   <div class="form-actions">
-    <%= f.submit 'Add portfolio', class: 'btn btn-primary' %>
+    <%= f.submit 'Add portfolio', class: 'btn btn-primary mt-2' %>
   </div>
 <% end %>

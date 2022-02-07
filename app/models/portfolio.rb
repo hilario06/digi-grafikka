@@ -15,4 +15,7 @@ class Portfolio < ApplicationRecord
   has_many :followers
   has_many :orders
   has_many :designs
+  def following?(user)
+    !!self.followers.find{|follower| follower.user_id == user.id}
+  end
 end

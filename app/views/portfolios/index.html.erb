@@ -1,5 +1,7 @@
-
 <div class="container my-4">
+    <% if user_signed_in? %>
+      <%= button_to "Seguiendo", is_portfolio_path, method: "put", remote: true, class: 'portfolios-btn' %>
+    <% end %>
   <div class="auto-grid-designs">
     <% @portfolios.each do |portfolio| %>
       <div class="bg-white rounded shadow-sm pb-3 card card-index-porfios">

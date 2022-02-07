@@ -20,4 +20,6 @@ class User < ApplicationRecord
   has_many :followers
   has_many :orders
   has_many :messages
+
+  acts_as_voter #likes
 end
