@@ -51,7 +51,8 @@ class PortfoliosController < ApplicationController
     # }
     # end
     # authorize @portfolio
-    @portfolio = Portfolio.find(params[:id])
+    # @portfolio = Portfolio.find(params[:id])
+    @review = Review.new
   end
 
   def new

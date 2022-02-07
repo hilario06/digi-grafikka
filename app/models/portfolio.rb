@@ -12,9 +12,10 @@
 #
 class Portfolio < ApplicationRecord
   belongs_to :user
-  has_many :followers
+  has_many :followers, dependent: :destroy
   has_many :orders
-  has_many :designs
+  has_many :designs, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   def following?(user)
     !!self.followers.find{|follower| follower.user_id == user.id}
   end

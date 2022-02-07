@@ -1,6 +1,3 @@
-
-
-
 <div class="portfolios-container">
   <div class='portfolios-banner'>
     <%= image_tag("perfil.jpeg", class: 'portfolios-perfil') %>
@@ -30,11 +27,71 @@
           <div class="card-body">
             <h5 class="card-title"><%= design.title %></h5>
             <p class="card-text"><%= design.description %></p>
-            <%= render "portfolios/upvote_link", design: design %>
             <%= render "portfolios/votes_score", design: design %>
+            <% if user_signed_in? %>
+              <%= render "portfolios/upvote_link", design: design %>
+            <% else %>
+              <%= 'Likes' %>
+            <% end %>
           </div>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+
+<div class='reviews-show'>
+  <% if @portfolio.reviews.blank? %>
+    <p class='text-right'>💬 Sé el primero en dejar un comentario</p>
+  <% else %>
+    <h2>Comentarios</h2>
+    <% @portfolio.reviews.order('created_at DESC').each do |review| %>
+      <div class="card">
+        <h5 class="card-header" style='background-color: hsla(0, 0, 0, 0.05)'>
+          <p><%= review.title %></p>
+          <span class='text-muted', style='font-size: 15px'>
+            <%= review.created_at.utc.localtime("-05:00").strftime("%h %d, %Y - %I:%M %p") %>
+          </span>
+        </h5>
+        <div class="card-body">
+          <% if user_signed_in? && review.user == current_user %>
+            <%= link_to "Remove",
+                  review_path(review, :portfolio_id => review.portfolio),
+                  method: :delete,
+                  class: 'product-remove',
+                  data: { confirm: "¿Estás seguro?" } %>
+          <% end %>
+          <h5 class="card-rating mt-2">
+            <% review.rating.times do  %>
+              <i class="fas fa-star" style='color: #FFCE00'></i>
+            <% end %>
+            <% review.blank_stars.times do %>
+              <i class="far fa-star" style='color: #FFCE00'></i>
+            <% end %>
+            <div class='text-right'>
+              <p class='text-muted' style='font-size: 18px'>Autor: 
+                <%= "#{review.user.email}" %>
+              </p>
+              </div>
+          </h5>
+          <p class="card-text"><p><%= review.content %></p></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<% if user_signed_in? %>
+  <hr>  
+  <div class='review-form'>
+    <p class='text-center mb-5' style='font-size: 25px'>Escribe un comentario</p>
+    <%= simple_form_for([ @portfolio, @review ], remote: true) do |f| %>
+      <%= f.input :title %>
+      <%= f.input :content, as: :text %>
+      <%= f.input :rating %>
+      <div class='text-right mt-5'>
+        <%= f.button :submit, class: 'btn btn-outline-primary' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
