@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     # collection do
       # put "welcome"
     # end
+    resources :reviews, only: :create
     resources :designs, only: [ :index, :new, :create ]
     resources :orders, only: [ :new, :create ]
     resources :followers, only: [ :index, :new, :create ]
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
       patch "upvote", to: "designs#upvote" # likes
     end
   end
+  resources :reviews, only: [ :destroy ]
   put '/portfolio/:id/follow', to: 'portfolios#follow', as: 'follow' #seguidores
   put 'is_portfolio', to: 'portfolios#is_portfolio', as: 'is_portfolio'
   get 'welcome', to: 'portfolios#welcome', as: 'welcome'
