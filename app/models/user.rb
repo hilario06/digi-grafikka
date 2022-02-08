@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   has_many :followers
   has_many :orders
-  has_many :messages
+  # has_many :messages
   has_many :reviews
 
   acts_as_voter #likes

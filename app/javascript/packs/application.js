@@ -24,6 +24,7 @@ import "bootstrap";
 //import { controllers } from "controllers/insert_in_list_controller";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { initChatroomCable } from '../channels/chatroom_channel';
 import { initImagePopup } from '../popup/popup';
 
 document.addEventListener('turbolinks:load', () => {
@@ -31,6 +32,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
  // controllers();
   initImagePopup(".img-container");
+  initChatroomCable();
 });
 import "controllers";
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chatrooms/show'
   devise_for :users
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -23,6 +24,9 @@ Rails.application.routes.draw do
   get 'welcome', to: 'portfolios#welcome', as: 'welcome'
   resources :orders, only: [ :index, :show, :edit, :update, :destroy ]
   resources :followers, only: [ :index, :show, :edit, :update, :destroy ]
+  resources :chatrooms, only: :show do
+  resources :messages, only: :create
+end
   # resources :technologies, only: [ :new, :create ]
   # resources :designs_technologies, only: [ :index, :new, :create ]
 end

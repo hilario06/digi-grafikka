@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2022_02_07_152247) do
   enable_extension "plpgsql"
 
   create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
     t.bigint "portfolio_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
