@@ -6,9 +6,11 @@ class PortfoliosController < ApplicationController
     if @portfolio.following?(current_user)
       @follower = Follower.where(user_id: current_user.id)
                           .and(Follower.where(portfolio_id: @portfolio.id))
+      @portfolio.subtracting_follower!
       @follower[0].destroy
     else
       Follower.create(user_id: current_user.id, portfolio_id: @portfolio.id)
+      @portfolio.new_follower!
     end
     redirect_to portfolio_path(@portfolio, anchor: "button-follower")
   end

@@ -19,6 +19,9 @@
           <li class="nav-item">
             <%= link_to 'Compartir tu trabajo', is_portfolio_path, method: "put", remote: true, class: 'nav-link' %>
           </li>
+          <li class="nav-item">
+            <%= link_to 'Mis Seguidores', followers_path, class: 'nav-link' %>
+          </li>
         <% end %>
 
         <% if user_signed_in? %>
