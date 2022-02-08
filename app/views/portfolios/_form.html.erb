@@ -1,6 +1,8 @@
 <%= simple_form_for(portfolio) do |f| %>
   <div class="form-inputs" style="color:white">
     <%= f.input :about, label: 'Título:' %>
+    <%= f.input :technology_ids, as: :select, label: 'Technologies',
+            collection: Technology.order(:name), label_method: :name, input_html: { multiple: true } %>
   </div>
 
   <div class="form-actions">

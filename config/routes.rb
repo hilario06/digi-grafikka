@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       patch "upvote", to: "designs#upvote" # likes
     end
   end
+  get 'technologies/:technology', to: 'portfolios#index', as: :technology
+  get 'filter/:filter', to: 'portfolios#index', as: :filter
+
   resources :reviews, only: [ :destroy ]
   put '/portfolio/:id/follow', to: 'portfolios#follow', as: 'follow' #seguidores
   put 'is_portfolio', to: 'portfolios#is_portfolio', as: 'is_portfolio'

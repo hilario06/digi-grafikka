@@ -1,20 +1,31 @@
 <div class="portfolios-container">
   <div class='portfolios-banner'>
-    <%= image_tag("perfil.jpeg", class: 'portfolios-perfil') %>
-    <%= image_tag("background.png", class: 'portfolios-background') %>
+    <%= image_tag("#{@portfolio.user.image}", 
+      class: 'portfolios-perfil') %>
+    <%= image_tag("#{@portfolio.designs.sample.image}", class: 'portfolios-background') %>
   </div>
   <div class="container">
     <div class='portfolios-details'>
-      <p class='designer-name text-center'>Jeanine Perez Saleño</p>
+      <p class='designer-name text-center'><%= "#{@portfolio.user.name} #{@portfolio.user.last_name}" %></p>
       <p class='designer-description text-center'>Freelance Brand and Logo Designer</p>
-      <p class='designer-location text-center'>📍 Lima, Perú</p>
+      <p class='designer-location text-center'>📍<%= " #{@portfolio.user.address}" %></p>
+      <div class="content-followers-and-likes">
+          <div class='followers'>
+            <p class="m-0 text-center"><%= "#{@portfolio.total_followers} " %></p>
+            <p class="small text-muted m-0 text-center">seguidores</p>
+          </div>
+          <div class='likes'>
+            <p class="m-0 text-center"><%= "#{@portfolio.total_likes.round(0)} " %></p>
+            <p class="small text-muted m-0 text-center">likes</p>
+          </div>
+        </div>
       <div class='buttons-container text-center' id="button-follower">
         <% if user_signed_in? %>
           <% if current_user == @portfolio.user %>
             <%= link_to 'Mis diseños', portfolio_designs_path(@portfolio), class: 'portfolios-btn' %>
           <% else %>
             <% if @portfolio.following?(current_user) %>
-              <%= button_to "Seguiendo", follow_path(@portfolio), method: "put", remote: true, class: 'portfolios-btn' %>
+              <%= button_to "Siguiendo", follow_path(@portfolio), method: "put", remote: true, class: 'portfolios-btn' %>
             <% else %>
               <%= button_to "Sígueme", follow_path(@portfolio), method: "put", remote: true, class: 'portfolios-btn' %>
             <% end %>
@@ -41,7 +52,7 @@
             <% @portfolio.designs.each do |design| %>
               <div class="card">
                 <div class="img-container img-design" style="">
-                  <%= image_tag('pantera.jpeg') %>
+                  <%= image_tag("#{design.image}") %>
                 </div>
                 <div class="card-body">
                   <h5 class="card-title text-center"><%= design.title %></h5>
