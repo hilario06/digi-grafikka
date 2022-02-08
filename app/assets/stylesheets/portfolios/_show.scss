@@ -69,6 +69,7 @@
     left: 40%;
     border: 3px solid white;
     z-index: 2;
+    background-color: black;
 }
 
 .portfolios-background {
@@ -81,4 +82,18 @@
 
 .portfolios-background:hover {
     opacity: 1;
+}
+
+.content-followers-and-likes {
+  position: relative;
+  .followers {
+    position: absolute;
+    top: -280px;
+    right: 60px;
+  }
+  .likes {
+    position: absolute;
+    top: -280px;
+    right: 0px;
+  }
 }

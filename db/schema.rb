@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_07_181432) do
+ActiveRecord::Schema.define(version: 2022_02_08_203252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2022_02_07_181432) do
     t.integer "cached_weighted_score", default: 0
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
+    t.string "image"
     t.index ["portfolio_id"], name: "index_designs_on_portfolio_id"
   end
 
@@ -87,6 +88,8 @@ ActiveRecord::Schema.define(version: 2022_02_07_181432) do
     t.integer "total_followers", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "career"
+    t.integer "years_of_experience"
     t.index ["user_id"], name: "index_portfolios_on_user_id"
   end
 
@@ -125,6 +128,11 @@ ActiveRecord::Schema.define(version: 2022_02_07_181432) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.string "last_name"
+    t.string "phone"
+    t.string "address"
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

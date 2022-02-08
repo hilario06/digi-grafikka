@@ -28,22 +28,29 @@ puts "Iniciando los seed"
   end
   user = User.create(
     email: "user#{j}@lewagon.com",
-    password: '123456')
+    password: '123456',
+    image: Faker::Avatar.image,
+    name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    address: "#{Faker::Address.city}, #{Faker::Address.country}"
+  )
     
   portfolio = Portfolio.create(
-                  total_likes: prng.rand(180..200),
                   stars_average: prng.rand(1..5),
                   about: Faker::Books::Dune.quote,
                   user: user,
-                  tag_list: tag_list.join(', ')
+                  tag_list: tag_list.join(', '),
+                  total_followers: prng.rand(5..50),
+                  total_likes: prng.rand(10..100)
                 )
 
-  prng.rand(3..6).times do
+  prng.rand(5..20).times do |t|
+    tags = %w[digital computer portrait scenary landscape scene decoration]
     Design.create(
       portfolio: portfolio,
       title: Faker::Book.title,
       description: Faker::Book.author,
-      likes: prng.rand(10..30)
+      image: "https://loremflickr.com/400/400/design,#{tags.sample},#{tags.sample}"
     )
   end
 end

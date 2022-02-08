@@ -35,35 +35,35 @@
       <div class="bg-white rounded shadow-sm pb-3 card card-index-porfios">
         <div class="container-designs">
           <div>
-            <%= image_tag("diseno1.jpg", class:"") %>
+            <%= image_tag("#{portfolio.designs.sample.image}", class:"") %>
           </div>
           <div>
-            <%= image_tag("diseno2.jpg", class:"") %>
+            <%= image_tag("#{portfolio.designs.sample.image}", class:"") %>
           </div>
         </div>
-        <div class="text-center" style="margin-top: -30px">
+        <div class="container-tech text-center" style="margin-top: -30px">
           <%= link_to portfolio_path(portfolio) do %>
-            <%= image_tag "teacher-4.jpg", width: 100, class: 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm' %>
+            <%= image_tag "#{portfolio.user.image}", width: 100, class: 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm' %>
           <% end %>
           <h6 class="mb-0">
-            <%= link_to 'Manuella Nevoresky', portfolio_path(portfolio) %>
+            <%= link_to "#{portfolio.user.name} #{portfolio.user.last_name}", portfolio_path(portfolio) %>
           </h6>
-          <span class="small text-muted"><i class="fas fa-map-marker-alt"></i> Melbourne, Australia</span>
-          <br>
-          <br>
-          <% portfolio.tag_list.split(', ').each do |technology| %>
-            <%= image_tag("#{technology}-logo.png", style: 'height: 30px') %>
+          <span class="small text-muted"><i class="fas fa-map-marker-alt"></i><%= " #{portfolio.user.address}" %></span>
+  
+          <div class='index-technologies'>
+            <% portfolio.tag_list.split(', ').each do |technology| %>
+            <p><%= image_tag("#{technology}-logo.png", style: 'height: 30px') %></p>
           <% end %>
-        </div>
-        <div class="content-favorites-and-likes mt-3 mx-3">
-          <div>
-            <p class="m-0 text-center">348</p>
-            <p class="small text-muted m-0 text-center">valoraciones</p>
           </div>
-          <div class="text-muted">|</div>
+        </div>
+        <div class="content-favorites-and-likes">
           <div>
-            <p class="m-0 text-center">200</p>
+            <p class="m-0 text-center"><%= "#{portfolio.total_followers} " %></p>
             <p class="small text-muted m-0 text-center">seguidores</p>
+          </div>
+          <div>
+            <p class="m-0 text-center"><%= "#{portfolio.total_likes.round(0)} " %></p>
+            <p class="small text-muted m-0 text-center">likes</p>
           </div>
         </div>
         <div class="button-card-portfolio mt-4">
