@@ -1,7 +1,35 @@
+<div class='sort-container'>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Choose a technology
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <% @technologies.each do |technology| %>
+        <li>
+          <%= link_to technology, technology_path(technology), 
+            class: "dropdown-item", style: 'display: inline' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Sort by
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <% @filters.each do |filter| %>
+        <li>
+          <%= link_to filter, filter_path(filter), 
+            class: "dropdown-item", style: 'display: inline' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
 <div class="container my-4">
-    <% if user_signed_in? %>
-      <%= button_to "Seguiendo", is_portfolio_path, method: "put", remote: true, class: 'portfolios-btn' %>
-    <% end %>
   <div class="auto-grid-designs">
     <% @portfolios.each do |portfolio| %>
       <div class="bg-white rounded shadow-sm pb-3 card card-index-porfios">
@@ -21,6 +49,11 @@
             <%= link_to 'Manuella Nevoresky', portfolio_path(portfolio) %>
           </h6>
           <span class="small text-muted"><i class="fas fa-map-marker-alt"></i> Melbourne, Australia</span>
+          <br>
+          <br>
+          <% portfolio.tag_list.split(', ').each do |technology| %>
+            <%= image_tag("#{technology}-logo.png", style: 'height: 30px') %>
+          <% end %>
         </div>
         <div class="content-favorites-and-likes mt-3 mx-3">
           <div>

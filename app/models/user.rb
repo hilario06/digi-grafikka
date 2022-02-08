@@ -17,10 +17,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :followers
-  has_many :orders
-  has_many :messages
-  has_many :reviews
+  has_many :followers, dependent: :destroy
+  has_many :orders, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   acts_as_voter #likes
 end

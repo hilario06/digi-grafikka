@@ -34,7 +34,11 @@ class PortfoliosController < ApplicationController
     # else
     #   @portfolios = policy_scope(Portfolio).order(created_at: :desc)
     # end
-    @portfolios = Portfolio.includes(:user)
+    @technologies = %w[Photoshop InDesign CorelDraw Illustrator Inkscape Sketch Canva Photoscape Other]
+    @filters = %w[Most-liked Most-followed]
+    return @portfolios = Portfolio.tagged_with(params[:technology]) if params[:technology]
+    return @portfolios = Portfolio.sort_portfolios_by(params[:filter]) if params[:filter]
+    @portfolios = Portfolio.all
   end
 
   def show
@@ -104,7 +108,7 @@ class PortfoliosController < ApplicationController
 
   def portfolio_params
     params.require(:portfolio).permit(
-      :about
+      :about, :tag_list, :technology, { technology_ids: [] }, :technology_ids
     )
   end
 end

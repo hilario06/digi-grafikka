@@ -9,4 +9,6 @@
 #
 class Technology < ApplicationRecord
   has_many :designs_technologies
+  has_many :portfolios_technologies, dependent: :destroy
+  has_many :portfolios, through: :portfolios_technologies
 end
