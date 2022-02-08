@@ -1,7 +1,20 @@
-<h1 styles="color: #000">Followers#index</h1>
-<p>Find me in app/views/followers/index.html.erb</p>
-<ul>
-  <% @followers.each do |follower| %>
-    <li><%= link_to follower.user.email %></li>
-  <% end %>
-</ul>
+<div class="portfolios-container">
+  <div class="container">
+    <h4 class="pt-4">Siguiendo</h4>
+    <div class="container-followers">
+      <% @followers.each do |follower| %>
+        <div class="follower">
+          <span>
+            <%= link_to portfolio_path(follower.portfolio) do %>
+              <img loading="lazy" alt="profile image" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" width="100" height="100" src="https://res.cloudinary.com/practicaldev/image/fetch/s--Ydp3mN2_--/c_imagga_scale,f_auto,fl_progressive,h_100,q_auto,w_100/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/362356/7f700e45-f9bd-4bb4-9053-e0ed4554c08a.jpeg">
+            <% end %>
+          </span>
+          <div class="description-follower ms-2">
+            <h5 class="m-1">Todo list with React, Redux, TypeScript and drag and drop</h5>
+            <p class="text-muted m-0">Daniel Gomez Jaramillo</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

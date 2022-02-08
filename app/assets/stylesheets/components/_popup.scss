@@ -1,0 +1,41 @@
+
+.img-container {
+  img {
+    cursor: pointer;
+    border-radius: 6px;
+    width: 100%;
+    height: 290px;
+    object-fit: cover;
+  }
+}
+
+// container for popup image
+.popupContainer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  overflow: auto;
+  // background of the popup umage
+  .popUpBackground {
+    transition: all 0.3s ease-in-out;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    &.active {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  }
+  // popup image, you can adjust here animation tranistion time and effect
+  .popImage {
+    position: relative;
+    display: block;
+    transition: all 0.3s ease-in-out;
+    border-radius: 6px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15),
+      0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  }
+}

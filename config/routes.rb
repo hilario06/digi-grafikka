@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :reviews, only: :create
     resources :designs, only: [ :index, :new, :create ]
     resources :orders, only: [ :new, :create ]
-    resources :followers, only: [ :index, :new, :create ]
+    resources :followers, only: [ :new, :create ]
   end
   resources :designs, only: [ :show, :edit, :update, :destroy ] do
     member do
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   put 'is_portfolio', to: 'portfolios#is_portfolio', as: 'is_portfolio'
   get 'welcome', to: 'portfolios#welcome', as: 'welcome'
   resources :orders, only: [ :index, :show, :edit, :update, :destroy ]
-  resources :followers, only: [ :show, :edit, :update, :destroy ]
+  resources :followers, only: [ :index, :show, :edit, :update, :destroy ]
   # resources :technologies, only: [ :new, :create ]
   # resources :designs_technologies, only: [ :index, :new, :create ]
 end

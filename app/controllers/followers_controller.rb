@@ -1,7 +1,8 @@
 class FollowersController < ApplicationController
   def index
-    @followers = Follower.where(portfolio_id: params[:portfolio_id])
+    # @followers = Follower.where(portfolio_id: params[:portfolio_id])
     # @portfolio = Portfolio.find(params[:portfolio_id])
+    @followers = Follower.where(user: current_user)
   end
 
   def new

@@ -49,5 +49,19 @@ class Portfolio < ApplicationRecord
     else
       Portfolio.order('total_followers DESC')
     end
+  def new_follower!
+    self.update_columns(total_followers: (self.total_followers + 1))
+  end
+
+  def subtracting_follower!
+    self.update_columns(total_followers: (self.total_followers - 1))
+  end
+
+  def new_like!
+    self.update_columns(total_likes: (self.total_likes + 1))
+  end
+
+  def subtracting_like!
+    self.update_columns(total_likes: (self.total_likes - 1))
   end
 end
