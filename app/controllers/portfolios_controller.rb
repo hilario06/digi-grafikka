@@ -42,8 +42,14 @@ class PortfoliosController < ApplicationController
   end
 
   def index
-    @technologies = %w[Photoshop InDesign CorelDraw Illustrator Inkscape Sketch Canva Photoscape Other]
-    @filters = %w[Most-liked Most-followed]
+    # if params[:query].present?
+    #   @portfolios = policy_scope(Portfolio).where("title ILIKE ?  OR author ILIKE ?", "%#{params[:query]}%","%#{params[:query]}%")
+    # # qu epusieron para las busquedas?
+    # else
+    #   @portfolios = policy_scope(Portfolio).order(created_at: :desc)
+    # end
+    @technologies = %w[Photoshop InDesign CorelDraw Illustrator Inkscape Sketch Canva Photoscape Otras]
+    @filters = ['Likes ↓', 'Seguidores ↓', 'Likes ↑', 'Seguidores ↑']
     return @portfolios = Portfolio.tagged_with(params[:technology]) if params[:technology]
     return @portfolios = Portfolio.sort_portfolios_by(params[:filter]) if params[:filter]
     @portfolios = Portfolio.all

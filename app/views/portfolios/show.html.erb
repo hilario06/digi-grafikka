@@ -37,13 +37,13 @@
 
       <ul class="nav nav-pills mb-3 mt-5" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Mira mis diseños</button>
+          <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Mis diseños</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Perfil</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+          <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contacto</button>
         </li>
       </ul>
       <div class="tab-content" id="pills-tabContent">
@@ -70,20 +70,55 @@
             <% end %>
           </div>
         </div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-        ..holis.
-        </div>
-        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-          Holis Holis
+        <div class="tab-pane fade sobre-mi" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+          <h4>Sobre mi:</h4>
+          <p style='font-size: 18px; text-align: justify'>Se puede decir que soy un tipo que ha 
+            tenido la suerte de trabajar en lo que le gusta y le apasiona estos últimos 25 años de su vida. 
+            Soy egresado del Instituto Superior de Comunicación Visual de Rosario con el título 
+            de Diseñador Gráfico. Realizo cursos, másteres para mejorar mi formación y estar 
+            permanentemente actualizado en esta profesión tan cambiante. He tenido el privilegio 
+            de trabajar en empresas de diversos sectores como Parques Reunidos, Lanetro Zed, 
+            Recoletos Grupo de Comunicación (Unidad Editorial), Publicis Dialog, Ahorro 
+            Corporación Financiera entre otras. En la actualidad trabajo como freelance para 
+            clientes que con su confianza en mi trabajo me permiten continuar con mi desarrollo 
+            profesional.</p>
+            <div class='perfil-cards'>
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Mi experiencia</h5>
+                  <p style='text-align: justify' class="card-text">Grupo Prima / Parques Reunidos / Lanetro Zed / Recoletos Grupo de Comunicación / Publicis Dialog / Ahorro Corporación Financiera / JOT Internet Media. Actualmente trabajo por mi cuenta como diseñador gráfico y web freelance.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Mis conocimientos</h5>
+                  <p style='text-align: justify' class="card-text">Photoshop / Illustrator / Dreamweaver / Flash / Fireworks / Indesign / Acrobat / Premiere/ Final Cut / HTML5 / CSS3 / WordPress / nociones de Actionscript, Javascript y PHP entre otros. Trabajo tanto en plataforma MAC (preferentemente) como en PC.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Más información</h5>
+                  <p style='text-align: justify' class="card-text">Te invito a descargar mi CV en formato PDF donde encontrarás en detalle toda mi experiencia y mi formación.</p>
+                  <button class='mt-5 btn btn-primary'>Descargar CV</button>
+                </div>
+                </div>
+            </div>
+          </div>
+        <div class="tab-pane fade sobre-mi" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+          <h4>Teléfono:</h4>
+          <p style='font-size: 18px'>• <%= @portfolio.user.phone %></p>
+          <h4>Correo electrónico:</h4>
+          <p style='font-size: 18px'>• <%= @portfolio.user.email %></p>
         </div>
       </div>
 
     </div>
 
 
-    <div class='reviews-show'>
+    <div class='reviews-show mt-5'>
+    <br>
       <% if @portfolio.reviews.blank? %>
-        <p class='text-right'>💬 Sé el primero en dejar un comentario</p>
+        <p style='text-align: right'>💬 Sé el primero en dejar un comentario</p>
       <% else %>
         <h2>Comentarios</h2>
         <% @portfolio.reviews.order('created_at DESC').each do |review| %>

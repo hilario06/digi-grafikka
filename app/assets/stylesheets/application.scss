@@ -18,3 +18,15 @@
 @import './portfolios/index';
 @import './portfolios/welcome';
 @import './followers/followers-index';
+
+body {
+    position: relative;
+    height: 100%;
+    margin: 0px;
+  }
+  .footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100vw;
+    margin-bottom: -175px;
+}
