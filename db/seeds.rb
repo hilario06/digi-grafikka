@@ -7,64 +7,53 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-  prng = Random.new
-  puts "Iniciando los seed"
+User.destroy_all
+Portfolio.destroy_all
+Design.destroy_all
 
-  # portafolio 1
-  user1 = User.first
-  portfolio1 = Portfolio.new(
-                total_likes: prng.rand(180..200),
-                stars_average: prng.rand(1..5),
-                about: Faker::Books::Dune.quote,
-                user: user1
-              )
-  portfolio1.save
+technologies = %w[Photoshop InDesign CorelDraw Illustrator Inkscape Sketch Canva Photoscape Otras ]
 
-  prng.rand(3..6).times do
+prng = Random.new
+puts "Iniciando los seed"
+
+20.times do |j|
+  i = 0
+  tag_list = []
+  while i < 2
+    sample = technologies.sample
+    if !tag_list.include? sample
+      tag_list << sample
+      i += 1
+    end
+  end
+  user = User.create(
+    email: "user#{j}@lewagon.com",
+    password: '123456',
+    image: Faker::Avatar.image,
+    name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    address: "#{Faker::Address.city}, #{Faker::Address.country}",
+    phone: Faker::PhoneNumber.cell_phone
+  )
+
+  portfolio = Portfolio.create(
+                  stars_average: prng.rand(1..5),
+                  about: Faker::Books::Dune.quote,
+                  user: user,
+                  tag_list: tag_list.join(', '),
+                  total_followers: prng.rand(5..50),
+                  total_likes: prng.rand(10..100)
+                )
+
+  prng.rand(5..20).times do |t|
+    tags = %w[digital computer portrait scenary landscape scene decoration]
     Design.create(
-      portfolio: portfolio1,
+      portfolio: portfolio,
       title: Faker::Book.title,
       description: Faker::Book.author,
-      likes: prng.rand(10..30)
+      image: "https://loremflickr.com/400/400/design,#{tags.sample},#{tags.sample}"
     )
   end
+end
 
- # portafolio 2
-  user2 = User.second
-  portfolio2 = Portfolio.new(
-                total_likes: prng.rand(180..200),
-                stars_average: prng.rand(1..5),
-                about: Faker::Books::Dune.quote,
-                user: user2
-              )
-  portfolio2.save
-
-  prng.rand(3..6).times do
-    Design.create(
-      portfolio: portfolio2,
-      title: Faker::Book.title,
-      description: Faker::Book.author,
-      likes: prng.rand(10..30)
-    )
-  end
-
-  # portafolio 2
-  user3 = User.third
-  portfolio3 = Portfolio.new(
-                total_likes: prng.rand(180..200),
-                stars_average: prng.rand(1..5),
-                about: Faker::Books::Dune.quote,
-                user: user3
-              )
-  portfolio3.save
-
-  prng.rand(3..6).times do
-    Design.create(
-      portfolio: portfolio3,
-      title: Faker::Book.title,
-      description: Faker::Book.author,
-      likes: prng.rand(10..30)
-    )
-  end
-
-  puts "Final del seed"
+puts "Final del seed"

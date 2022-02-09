@@ -1,0 +1,9 @@
+<%= content_tag "span", id: "upvote-#{design.id}" do %>
+  <%= link_to upvote_design_path(design), method: :patch, remote: true, data: { disable_with: "voting..." }, style: "text-decoration: none;" do %>
+    <% if current_user.voted_up_on? design %>
+      <i class="fas fa-thumbs-up" style="font-size:32px; color: #A77F69"></i>
+    <% else %>
+      <i class="far fa-thumbs-up" style="font-size:32px; color: #A77F69"></i>
+    <% end %>
+  <% end %>
+<% end %>

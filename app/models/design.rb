@@ -13,5 +13,6 @@
 class Design < ApplicationRecord
   belongs_to :portfolio
   has_many :designs_technologies
+  acts_as_votable # para los me gustas
   default_scope { order("created_at DESC") }
 end

@@ -1,11 +1,63 @@
 .portfolios-container {
     background-color: #F2E9E4;
-    padding-bottom: 20px;
+    .designer-name {
+      font-size: 50px;
+      font-weight: bold;
+    }
+    .designer-description {
+      font-size: 20px;
+    }
+    .desginer-location {
+      font-size: 15px;
+    }
+    .buttons-container {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 70px;
+    }
+    .portfolios-btn {
+      display: block;
+      width: 200px;
+      background-color: #22223B;
+      text-decoration: none;
+      color: white;
+      font-size: 20px;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    ul{
+      li{
+        .nav-link{
+          border: 1px solid #000;
+          color: #000;
+          font-style: oblique;
+          font-size: 23px;
+        }
+        .nav-link.active{
+          background-color: white;
+          color: #000;
+          font-style: oblique;
+          font-size: 23px;
+        }
+      }
+    }
+    .auto-grid-designs{
+      --auto-grid-min-size: 20rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+      grid-gap: 1rem;
+    }
+
 }
 
 .portfolios-banner {
     position: relative;
     margin-bottom: 125px;
+    img{
+      object-fit: cover;
+    }
 }
 
 .portfolios-perfil {
@@ -17,6 +69,7 @@
     left: 40%;
     border: 3px solid white;
     z-index: 2;
+    background-color: black;
 }
 
 .portfolios-background {
@@ -31,55 +84,25 @@
     opacity: 1;
 }
 
-.portfolios-details {
-    text-align: center;
-    .designer-name {
-        font-size: 50px;
-        font-weight: bold;
-    }
-    .designer-description {
-        font-size: 20px;
-    }
-    .desginer-location {
-        font-size: 15px;
-    }
-    .buttons-container {
-        margin-top: 40px;
-        display: flex;
-        justify-content: center;
-        gap: 70px;
-    }
-    .portfolios-btn {
-        display: block;
-        width: 200px;
-        background-color: #22223B;
-        text-decoration: none;
-        color: white;
-        font-size: 20px;
-        padding: 15px;
-        border-radius: 5px;
-    }
+.content-followers-and-likes {
+  position: relative;
+  .followers {
+    position: absolute;
+    top: -280px;
+    right: 60px;
+  }
+  .likes {
+    position: absolute;
+    top: -280px;
+    right: 0px;
+  }
 }
 
-.portfolios-designs {
-    margin: 70px 0px;
-   .designs-btn {
-    background-color: #A77F69;
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-    padding: 15px;
-    border-radius: 5px;
-   }
+.sobre-mi {
+  margin: 40px 100px;
 }
-
-.portfolios-card {
-    margin: 100px;
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    flex-wrap: wrap;
-    .card {
-        width: 350px;
-    }
+.perfil-cards {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px;
 }
