@@ -1,6 +1,34 @@
 class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: %i[show edit update destroy]
 
+  def follow
+    @portfolio = Portfolio.all.find(params[:id])
+    if @portfolio.following?(current_user)
+      @follower = Follower.where(user_id: current_user.id)
+                          .and(Follower.where(portfolio_id: @portfolio.id))
+      @portfolio.subtracting_follower!
+      @follower[0].destroy
+    else
+      Follower.create(user_id: current_user.id, portfolio_id: @portfolio.id)
+      @portfolio.new_follower!
+    end
+    redirect_to portfolio_path(@portfolio, anchor: "button-follower")
+  end
+
+  def is_portfolio
+    @portfolio = Portfolio.find_by(user_id: current_user.id)
+    if @portfolio
+      redirect_to portfolio_designs_path(@portfolio)
+    else
+      # redirect_to welcome_portfolios_path
+      redirect_to welcome_path
+    end
+  end
+
+  def welcome1
+
+  end
+
   def index
     # if params[:query].present?
     #   @portfolios = policy_scope(Portfolio).where("title ILIKE ?  OR author ILIKE ?", "%#{params[:query]}%","%#{params[:query]}%")
@@ -8,7 +36,11 @@ class PortfoliosController < ApplicationController
     # else
     #   @portfolios = policy_scope(Portfolio).order(created_at: :desc)
     # end
-    @portfolios = Portfolio.includes(:user)
+    @technologies = %w[Photoshop InDesign CorelDraw Illustrator Inkscape Sketch Canva Photoscape Other]
+    @filters = %w[Most-liked Most-followed]
+    return @portfolios = Portfolio.tagged_with(params[:technology]) if params[:technology]
+    return @portfolios = Portfolio.sort_portfolios_by(params[:filter]) if params[:filter]
+    @portfolios = Portfolio.all
   end
 
   def show
@@ -25,11 +57,12 @@ class PortfoliosController < ApplicationController
     # }
     # end
     # authorize @portfolio
-    @portfolio = Portfolio.find(params[:id])
+    # @portfolio = Portfolio.find(params[:id])
+    @review = Review.new
   end
 
   def new
-    @portfolio = Portfolios.new
+    @portfolio = Portfolio.new
     # authorize @portfolio
   end
 
@@ -77,7 +110,7 @@ class PortfoliosController < ApplicationController
 
   def portfolio_params
     params.require(:portfolio).permit(
-      :about
+      :about, :tag_list, :technology, { technology_ids: [] }, :technology_ids
     )
   end
 end

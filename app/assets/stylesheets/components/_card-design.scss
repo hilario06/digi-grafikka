@@ -1,4 +1,7 @@
 .card-design{
+  h6{
+    color:#A77E69;
+  }
   img{
     height: 180px;
     width: 90%;
@@ -19,12 +22,12 @@
     &:hover{
       background: #ddd;
       text-decoration: none;
-      color: #555;
+      color: #A77E69;
     }
     &:focus{
       background: #ddd;
       text-decoration: none;
-      color: #555;
+      color: #A77E69;
     }
   }
 }

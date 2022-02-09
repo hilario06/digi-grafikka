@@ -1,10 +1,141 @@
-<div class="container">
-  <div>
-    <%= image_tag("donald.png", class:"img-fluid mb-3 img-thumbnail shadow-sm") %>
-    <p><%= @portfolio.user.email %></p>
-    <p><%= @portfolio.total_likes %></p>
-    <p><%= @portfolio.stars_average %></p>
-    <p><%= @portfolio.about %></p>
-    <%= link_to 'designs', portfolio_designs_path(@portfolio) %>
+<div class="portfolios-container">
+  <div class='portfolios-banner'>
+    <%= image_tag("#{@portfolio.user.image}", 
+      class: 'portfolios-perfil') %>
+    <%= image_tag("#{@portfolio.designs.sample.image}", class: 'portfolios-background') %>
+  </div>
+  <div class="container">
+    <div class='portfolios-details'>
+      <p class='designer-name text-center'><%= "#{@portfolio.user.name} #{@portfolio.user.last_name}" %></p>
+      <p class='designer-description text-center'>Freelance Brand and Logo Designer</p>
+      <p class='designer-location text-center'>📍<%= " #{@portfolio.user.address}" %></p>
+      <div class="content-followers-and-likes">
+          <div class='followers'>
+            <p class="m-0 text-center"><%= "#{@portfolio.total_followers} " %></p>
+            <p class="small text-muted m-0 text-center">seguidores</p>
+          </div>
+          <div class='likes'>
+            <p class="m-0 text-center"><%= "#{@portfolio.total_likes.round(0)} " %></p>
+            <p class="small text-muted m-0 text-center">likes</p>
+          </div>
+        </div>
+      <div class='buttons-container text-center' id="button-follower">
+        <% if user_signed_in? %>
+          <% if current_user == @portfolio.user %>
+            <%= link_to 'Mis diseños', portfolio_designs_path(@portfolio), class: 'portfolios-btn' %>
+          <% else %>
+            <% if @portfolio.following?(current_user) %>
+              <%= button_to "Siguiendo", follow_path(@portfolio), method: "put", remote: true, class: 'portfolios-btn' %>
+            <% else %>
+              <%= button_to "Sígueme", follow_path(@portfolio), method: "put", remote: true, class: 'portfolios-btn' %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%= link_to 'Contáctame', portfolio_designs_path(@portfolio), class: 'portfolios-btn' %>
+
+      </div>
+
+      <ul class="nav nav-pills mb-3 mt-5" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Mira mis diseños</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+          <div class='auto-grid-designs'>
+            <% @portfolio.designs.each do |design| %>
+              <div class="card">
+                <div class="img-container img-design" style="">
+                  <%= image_tag("#{design.image}") %>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title text-center"><%= design.title %></h5>
+                  <p class="card-text text-center"><%= design.description %></p>
+                  <p class="text-center">
+                    <%= render "portfolios/votes_score", design: design, class: 'text-center' %>
+                    <% if user_signed_in? %>
+                      <%= render "portfolios/upvote_link", design: design, class: 'text-center' %>
+                    <% else %>
+                      <%= 'Likes' %>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        ..holis.
+        </div>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+          Holis Holis
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class='reviews-show'>
+      <% if @portfolio.reviews.blank? %>
+        <p class='text-right'>💬 Sé el primero en dejar un comentario</p>
+      <% else %>
+        <h2>Comentarios</h2>
+        <% @portfolio.reviews.order('created_at DESC').each do |review| %>
+          <div class="card">
+            <h5 class="card-header" style='background-color: hsla(0, 0, 0, 0.05)'>
+              <p><%= review.title %></p>
+              <span class='text-muted', style='font-size: 15px'>
+                <%= review.created_at.utc.localtime("-05:00").strftime("%h %d, %Y - %I:%M %p") %>
+              </span>
+            </h5>
+            <div class="card-body">
+              <% if user_signed_in? && review.user == current_user %>
+                <%= link_to "Remove",
+                      review_path(review, :portfolio_id => review.portfolio),
+                      method: :delete,
+                      class: 'product-remove',
+                      data: { confirm: "¿Estás seguro?" } %>
+              <% end %>
+              <h5 class="card-rating mt-2">
+                <% review.rating.times do  %>
+                  <i class="fas fa-star" style='color: #FFCE00'></i>
+                <% end %>
+                <% review.blank_stars.times do %>
+                  <i class="far fa-star" style='color: #FFCE00'></i>
+                <% end %>
+                <div class='text-right'>
+                  <p class='text-muted' style='font-size: 18px'>Autor:
+                    <%= "#{review.user.email}" %>
+                  </p>
+                  </div>
+              </h5>
+              <p class="card-text"><p><%= review.content %></p></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <% if user_signed_in? %>
+      <hr>
+      <div class='review-form'>
+        <p class='text-center mb-5' style='font-size: 25px'>Escribe un comentario</p>
+        <%= simple_form_for([ @portfolio, @review ], remote: true) do |f| %>
+          <%= f.input :title %>
+          <%= f.input :content, as: :text %>
+          <%= f.input :rating %>
+          <div class='text-right mt-5'>
+            <%= f.button :submit, class: 'btn btn-outline-primary' %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
   </div>
 </div>
