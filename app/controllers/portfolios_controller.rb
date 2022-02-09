@@ -25,8 +25,21 @@ class PortfoliosController < ApplicationController
     end
   end
 
-  def welcome1
+  def has_chat
+    @chatroom = Chatroom.where(user_id: current_user.id)
+                        .and(Chatroom.where(portfolio_id: params[:portfolio_id]))
+    if @chatroom.exists?
+      redirect_to chatroom_path(@chatroom[0].id)
+    else
+      @new_chatroom = Chatroom.new(user_id: current_user.id, portfolio_id: params[:portfolio_id])
+      @new_chatroom.save
+      redirect_to chatroom_path(@new_chatroom)
+    end
+  end
 
+  def chats
+    @chatrooms = Chatroom.where(portfolio_id: params[:id])
+    @portfolio = Portfolio.find(params[:id])
   end
 
   def index

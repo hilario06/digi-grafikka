@@ -1,6 +1,6 @@
 <div class="portfolios-container">
   <div class='portfolios-banner'>
-    <%= image_tag("#{@portfolio.user.image}", 
+    <%= image_tag("#{@portfolio.user.image}",
       class: 'portfolios-perfil') %>
     <%= image_tag("#{@portfolio.designs.sample.image}", class: 'portfolios-background') %>
   </div>
@@ -23,16 +23,16 @@
         <% if user_signed_in? %>
           <% if current_user == @portfolio.user %>
             <%= link_to 'Mis diseños', portfolio_designs_path(@portfolio), class: 'portfolios-btn' %>
+            <%= link_to 'Mi Chat', chats_portfolio_path(@portfolio), class: 'portfolios-btn' %>
           <% else %>
             <% if @portfolio.following?(current_user) %>
               <%= button_to "Siguiendo", follow_path(@portfolio), method: "put", remote: true, class: 'portfolios-btn' %>
             <% else %>
               <%= button_to "Sígueme", follow_path(@portfolio), method: "put", remote: true, class: 'portfolios-btn' %>
             <% end %>
+            <%= link_to 'Contáctame', has_chat_path(:portfolio_id => @portfolio), method: "post", class: 'portfolios-btn' %>
           <% end %>
         <% end %>
-        <%= link_to 'Contáctame', portfolio_designs_path(@portfolio), class: 'portfolios-btn' %>
-
       </div>
 
       <ul class="nav nav-pills mb-3 mt-5" id="pills-tab" role="tablist">
