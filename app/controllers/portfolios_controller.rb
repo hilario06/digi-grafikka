@@ -36,8 +36,8 @@ class PortfoliosController < ApplicationController
     # else
     #   @portfolios = policy_scope(Portfolio).order(created_at: :desc)
     # end
-    @technologies = %w[Photoshop InDesign CorelDraw Illustrator Inkscape Sketch Canva Photoscape Other]
-    @filters = %w[Most-liked Most-followed]
+    @technologies = %w[Photoshop InDesign CorelDraw Illustrator Inkscape Sketch Canva Photoscape Otras]
+    @filters = ['Likes ↓', 'Seguidores ↓', 'Likes ↑', 'Seguidores ↑']
     return @portfolios = Portfolio.tagged_with(params[:technology]) if params[:technology]
     return @portfolios = Portfolio.sort_portfolios_by(params[:filter]) if params[:filter]
     @portfolios = Portfolio.all

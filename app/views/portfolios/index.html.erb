@@ -1,9 +1,13 @@
 <div class='sort-container'>
   <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-      Choose a technology
+      Escoge una tecnología
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li>
+          <%= link_to 'Todas', portfolios_path, 
+            class: "dropdown-item", style: 'display: inline' %>
+      </li>
       <% @technologies.each do |technology| %>
         <li>
           <%= link_to technology, technology_path(technology), 
@@ -15,7 +19,7 @@
 
   <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-      Sort by
+      Ordenar por
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
       <% @filters.each do |filter| %>
@@ -49,7 +53,7 @@
             <%= link_to "#{portfolio.user.name} #{portfolio.user.last_name}", portfolio_path(portfolio) %>
           </h6>
           <span class="small text-muted"><i class="fas fa-map-marker-alt"></i><%= " #{portfolio.user.address}" %></span>
-  
+
           <div class='index-technologies'>
             <% portfolio.tag_list.split(', ').each do |technology| %>
             <p><%= image_tag("#{technology}-logo.png", style: 'height: 30px') %></p>

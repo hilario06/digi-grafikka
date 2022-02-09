@@ -11,7 +11,7 @@ User.destroy_all
 Portfolio.destroy_all
 Design.destroy_all
 
-technologies = %w[Photoshop InDesign CorelDraw Illustrator Inkscape Sketch Canva Photoscape Other ]
+technologies = %w[Photoshop InDesign CorelDraw Illustrator Inkscape Sketch Canva Photoscape Otras ]
 
 prng = Random.new
 puts "Iniciando los seed"
@@ -32,7 +32,8 @@ puts "Iniciando los seed"
     image: Faker::Avatar.image,
     name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    address: "#{Faker::Address.city}, #{Faker::Address.country}"
+    address: "#{Faker::Address.city}, #{Faker::Address.country}",
+    phone: Faker::PhoneNumber.cell_phone
   )
 
   portfolio = Portfolio.create(
