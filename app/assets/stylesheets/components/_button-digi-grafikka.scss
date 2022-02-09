@@ -1,0 +1,10 @@
+.button-digi-grafikka{
+  color: #fff;
+  background-color: #A77E69;
+  border: 1.5px solid transparent;
+  &:hover{
+    border: 1.5px solid #A77E69;
+    background-color: #fff;
+    color: #A77E69;
+  }
+}

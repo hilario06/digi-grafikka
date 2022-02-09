@@ -9,5 +9,6 @@
 #
 class Chatroom < ApplicationRecord
   belongs_to :portfolio
-  has_many :messages
+  has_many :messages, dependent: :destroy
+  belongs_to :user
 end

@@ -1,11 +1,11 @@
 <div id="design-<%= design.id %>"
-  class="bg-white rounded shadow-sm py-4 px-4 text-center card card-design"
+  class="rounded shadow-sm py-4 px-4 text-center card card-design"
   data-controller="edit-design" data-edit-design-target="card">
 
   <!--content de edit-->
   <div data-edit-design-target="infos" class="<%= 'd-none' if design.errors.any? %>">
     <div class="text-center">
-      <%= image_tag("diseno-grafico.jpg", class:"img-fluid mb-3 img-thumbnail shadow-sm") %>
+      <%= image_tag "#{design.image}", class: 'img-fluid mb-3 img-thumbnail shadow-sm' %>
     </div>
     <h6 class="mb-0"><%= design.title %></h6>
     <span class="small text-muted"><%= design.description %></span>
@@ -35,6 +35,6 @@
    } do |f| -%>
     <%= f.input :title %>
     <%= f.input :description %>
-    <%= f.submit "Update design", class: "btn btn-sm btn-primary btn-block mt-2" %>
+    <%= f.submit "Update design", class: "btn btn-sm btn-primary btn-block mt-2 button-digi-grafikka" %>
   <% end %>
 </div>

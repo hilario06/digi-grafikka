@@ -1,12 +1,33 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: #22223B;
 }
+.navbar-light .navbar-nav .nav-link {
+  color: white;
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+  &:hover{
+  text-decoration: underline;
+  color:#A77E69;
+  }
+
 }
-
+a{
+  color: white;
+  font-family: monospace;
+}
+.navbar-brand{
+  color: white !important;
+  font-family:  'Rubik Mono One';
+  font-size: 25px;
+}
+.login{
+  margin-right: 50px;
+}
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.avatar-nav{
+  width: 40px;
+  border-radius: 50%;
 }

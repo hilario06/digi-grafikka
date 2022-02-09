@@ -1,0 +1,2 @@
+document.getElementById("upvote-<%= @design.id %>").innerHTML = "<%= j render 'portfolios/upvote_link', design: @design %>"
+document.getElementById("votes-score-<%= @design.id %>").innerHTML = "<%= j render "portfolios/votes_score", design: @design %>";

@@ -1,0 +1,31 @@
+.sort-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 80px;
+    .dropdown-menu {
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}
+
+.content-favorites-and-likes {
+    margin: 20px 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.container-tech  {
+    position: relative;
+    .img-user{
+      background-color: cadetblue;
+    }
+}
+
+.index-technologies {
+    position: absolute;
+    top: 40px;
+    margin-left: 5px;
+}

@@ -1,0 +1,81 @@
+
+.button-card-banner2{
+
+	background-color: #A59B53;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 8px;
+	font-family: 'Roboto',sans-serif;
+	text-decoration: none;
+  position:relative;
+  transition: .5s ease;
+  bottom: 125px;
+  right: 300px;
+}
+.button-card-banner2:hover{
+
+    background-color:white;
+    color: #A59B53;
+    transform: translateY(-3%);
+}
+
+
+.button-card-banner3{
+
+	background-color: #A59B53;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 8px;
+	font-family: 'Roboto',sans-serif;
+	text-decoration: none;
+  position:relative;
+  transition: .5s ease;
+  bottom: 90px;
+  left: 300px;
+}
+.button-card-banner3:hover{
+
+    background-color:white;
+    color: #A59B53;
+    transform: translateY(-3%);
+}
+
+.button-card-banner4{
+
+	background-color: #D7349A;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 8px;
+	font-family: 'Roboto',sans-serif;
+	text-decoration: none;
+  position:relative;
+  transition: .5s ease;
+  bottom: 350px;
+  left: 220px;
+}
+
+.button-card-banner4:hover{
+    background-color:white;
+    color: #D7349A;
+    transform: translateY(-3%);
+}
+
+.button-card-banner5{
+
+	background-color:whitesmoke;
+	color:  #D7349A;
+	padding: 10px 20px;
+	border-radius: 8px;
+	font-family: 'Roboto',sans-serif;
+	text-decoration: none;
+  position:relative;
+  transition: .5s ease;
+  bottom:210px;
+left:700px;
+}
+
+.button-card-banner5:hover{
+    background-color: #D7349A;
+    color: white;
+    transform: translateY(-3%);
+}

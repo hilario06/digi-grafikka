@@ -1,78 +1,130 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-
-
-
-
-
-<div class="container mt-5 mb-3">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card p-3 mb-2 card-monkey">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row align-items-center">
-                        <div class="icon"> <i class="fas fa-ambulance"></i> </div>
-                        <div class="ms-2 c-details">
-                            <h6 class="mb-0">Mailchimp</h6> <span>1 days ago</span>
-                        </div>
-                    </div>
-                    <div class="badge"> <span>Design</span> </div>
-                </div>
-                <div class="mt-5">
-                    <h3 class="heading">Senior Product<br>Designer-Singapore</h3>
-                    <div class="mt-5">
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <div class="mt-3"> <span class="text1">32 Applied <span class="text2">of 50 capacity</span></span> </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card p-3 mb-2 card-monkey">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row align-items-center">
-                        <div class="icon"> <i class="fas fa-ambulance"></i> </div>
-                        <div class="ms-2 c-details">
-                            <h6 class="mb-0">Dribbble</h6> <span>4 days ago</span>
-                        </div>
-                    </div>
-                    <div class="badge"> <span>Product</span> </div>
-                </div>
-                <div class="mt-5">
-                    <h3 class="heading">Junior Product<br>Designer-Singapore</h3>
-                    <div class="mt-5">
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <div class="mt-3"> <span class="text1">42 Applied <span class="text2">of 70 capacity</span></span> </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card p-3 mb-2 card-monkey">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row align-items-center">
-                        <div class="icon"> <i class="fas fa-ambulance"></i> </div>
-                        <div class="ms-2 c-details">
-                            <h6 class="mb-0">Reddit</h6> <span>2 days ago</span>
-                        </div>
-                    </div>
-                    <div class="badge"> <span>Design</span> </div>
-                </div>
-                <div class="mt-5">
-                    <h3 class="heading">Software Architect <br>Java - USA</h3>
-                    <div class="mt-5">
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <div class="mt-3"> <span class="text1">52 Applied <span class="text2">of 100 capacity</span></span> </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+       <%= image_tag("1caresp.png" , class: "d-block w-100")%>
     </div>
+    <div class="carousel-item">
+       <%= image_tag("2caresp.png" , class: "d-block w-100")%>
+      <div class="carousel-caption d-none d-md-block">
+        <button type="button" class="button-card-banner2">Conviértete en diseñador</button>
+        <p></p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag("3caresp.png" , class: "d-block w-100")%>
+      <div class="carousel-caption d-none d-md-block">
+      <button type="button" class="button-card-banner3">Elige tu diseñador</button>
+        <p></p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
+
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card" style="width: 15rem;">
+        <%= image_tag("card1.jfif" , class: "card-img-top")%>
+        <div class="card-body">
+          <h5 class="card-title">
+            Novedades
+          </h5>
+          <p class="card-text">
+            Puedes encontrar las ultimas publicaciones de nuestros usuarios,los más creativos del mes.
+          </p>
+          <a href="#" class="btn btn-primary">
+            Ver
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 15rem;">
+        <%= image_tag("card2.jfif" , class: "card-img-top")%>
+        <div class="card-body">
+          <h5 class="card-title">
+            Trending
+          </h5>
+          <p class="card-text">
+            Conoce más acerca de las tendencias en los portafolios mas populares de toda  Digi Grafikka.
+          </p>
+          <a href="#" class="btn btn-primary">
+            Ver
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 15rem;">
+        <%= image_tag("card4.jfif" , class: "card-img-top")%>
+        <div class="card-body">
+          <h5 class="card-title">
+            Comunidad
+          </h5>
+          <p class="card-text">
+           Forma parte de la más grande comunidad de creativos en el mundo,forma parte de esta gran familia.
+          </p>
+          <a href="#" class="btn btn-primary">
+            Unéte
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 15rem;">
+        <%= image_tag("card3.jpg" , class: "card-img-top")%>
+        <div class="card-body">
+          <h5 class="card-title">
+            Preguntas frecuentes
+          </h5>
+          <p class="card-text">
+            Aqui podrás encontrar respuesta a tus dudas,descuida alguien tuvo la misma pregunta .
+          </p>
+          <a href="#" class="btn btn-primary">
+            Leer más
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class= "container">
+  <div class="card card-image text-white" style= "width:1093px;  height:220px;">
+    <div class="card-img-overlay">
+      <h5 class="card-title">¿Quiénes somos?</h5>
+      <p class="card-text">Digi Grafikka busca crear un lugar seguro para los diseñadores que quieran expandir su trabajo y usuarios que quieran recibir sus servivios,ademas de poder crear comunidades creativas en Latinoamerica ,queremos poder promover el arte como estilo de vida.</p>
+    </div>
+  </div>
+</div>
+
+
+  <div style= "width:100%; ">
+     <%= image_tag("Testimonios1.png", style:"width:100%; " )%>
+  </div>
+
+
+
+ <div class="formulario" style= "width:100%; ">
+     <%= image_tag("formulario.png", style:"width:100%; " )%>
+      <button type="button" class="button-card-banner4">Join us in Slack</button>
+       <button type="button" class="button-card-banner5">Suscríbete</button>
+   <div class="input-group flex-nowrap">
+    <span class="input-group-text" id="addon-wrapping">@</span>
+    <input type="text" class="form-control" placeholder="gmail" aria-label="gmail" aria-describedby="addon-wrapping">
+   </div>
+ </div>

@@ -10,16 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_31_224710) do
+ActiveRecord::Schema.define(version: 2022_02_08_203252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
     t.bigint "portfolio_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["portfolio_id"], name: "index_chatrooms_on_portfolio_id"
+    t.index ["user_id"], name: "index_chatrooms_on_user_id"
   end
 
   create_table "design_technologies", force: :cascade do |t|
@@ -38,6 +41,14 @@ ActiveRecord::Schema.define(version: 2022_01_31_224710) do
     t.integer "likes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "cached_votes_total", default: 0
+    t.integer "cached_votes_score", default: 0
+    t.integer "cached_votes_up", default: 0
+    t.integer "cached_votes_down", default: 0
+    t.integer "cached_weighted_score", default: 0
+    t.integer "cached_weighted_total", default: 0
+    t.float "cached_weighted_average", default: 0.0
+    t.string "image"
     t.index ["portfolio_id"], name: "index_designs_on_portfolio_id"
   end
 
@@ -74,12 +85,36 @@ ActiveRecord::Schema.define(version: 2022_01_31_224710) do
 
   create_table "portfolios", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.float "total_likes"
-    t.float "stars_average"
+    t.float "total_likes", default: 0.0
+    t.float "stars_average", default: 0.0
     t.text "about"
+    t.integer "total_followers", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "career"
+    t.integer "years_of_experience"
     t.index ["user_id"], name: "index_portfolios_on_user_id"
+  end
+
+  create_table "portfolios_technologies", force: :cascade do |t|
+    t.bigint "portfolio_id", null: false
+    t.bigint "technology_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["portfolio_id"], name: "index_portfolios_technologies_on_portfolio_id"
+    t.index ["technology_id"], name: "index_portfolios_technologies_on_technology_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "rating"
+    t.bigint "portfolio_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["portfolio_id"], name: "index_reviews_on_portfolio_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "technologies", force: :cascade do |t|
@@ -96,11 +131,33 @@ ActiveRecord::Schema.define(version: 2022_01_31_224710) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.string "last_name"
+    t.string "phone"
+    t.string "address"
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.string "votable_type"
+    t.bigint "votable_id"
+    t.string "voter_type"
+    t.bigint "voter_id"
+    t.boolean "vote_flag"
+    t.string "vote_scope"
+    t.integer "vote_weight"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+    t.index ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id"
+    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+    t.index ["voter_type", "voter_id"], name: "index_votes_on_voter_type_and_voter_id"
+  end
+
   add_foreign_key "chatrooms", "portfolios"
+  add_foreign_key "chatrooms", "users"
   add_foreign_key "design_technologies", "designs"
   add_foreign_key "design_technologies", "technologies"
   add_foreign_key "designs", "portfolios"
@@ -111,4 +168,8 @@ ActiveRecord::Schema.define(version: 2022_01_31_224710) do
   add_foreign_key "orders", "portfolios"
   add_foreign_key "orders", "users"
   add_foreign_key "portfolios", "users"
+  add_foreign_key "portfolios_technologies", "portfolios"
+  add_foreign_key "portfolios_technologies", "technologies"
+  add_foreign_key "reviews", "portfolios"
+  add_foreign_key "reviews", "users"
 end

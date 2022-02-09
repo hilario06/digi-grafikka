@@ -14,6 +14,19 @@ class DesignsController < ApplicationController
     end
   end
 
+  # likes
+  def upvote
+    @design = Design.find(params[:id])
+    if current_user.voted_up_on? @design
+      @design.unliked_by current_user
+      Portfolio.find(@design.portfolio_id).subtracting_like!
+    else
+      @design.liked_by current_user
+      Portfolio.find(@design.portfolio_id).new_like!
+    end
+    render "portfolios/vote.js.erb"
+  end
+
   def new
     @portfolio = Portfolio.find(params[:portfolio_id])
     @design = Design.new
