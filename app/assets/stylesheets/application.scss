@@ -21,10 +21,12 @@
 
 body {
     position: relative;
-    height: 100vh;
+    height: 100%;
+    margin: 0px;
   }
   .footer {
     position: absolute;
     bottom: 0px;
     width: 100vw;
+    margin-bottom: -175px;
 }
