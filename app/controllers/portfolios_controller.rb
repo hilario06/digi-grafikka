@@ -39,6 +39,7 @@ class PortfoliosController < ApplicationController
 
   def chats
     @chatrooms = Chatroom.where(portfolio_id: params[:id])
+    @portfolio = Portfolio.find(params[:id])
   end
 
   def index
