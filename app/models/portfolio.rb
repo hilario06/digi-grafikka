@@ -44,10 +44,15 @@ class Portfolio < ApplicationRecord
   end
 
   def self.sort_portfolios_by(query)
-    if query == 'Most-liked'
+    case query
+    when 'Likes ↓'
       Portfolio.order('total_likes DESC')
-    else
+    when 'Likes ↑'
+      Portfolio.order('total_likes ASC')
+    when 'Seguidores ↓'
       Portfolio.order('total_followers DESC')
+    else
+      Portfolio.order('total_followers ASC')
     end
   end
   
