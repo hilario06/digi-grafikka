@@ -7,9 +7,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to 'Categorías', portfolios_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
           <%= link_to 'Diseñadores', portfolios_path, class: 'nav-link' %>
         </li>
         <% if user_signed_in? %>
@@ -23,7 +20,7 @@
             <%= link_to 'Mi Chat', chatrooms_path, class: 'nav-link' %>
           </li>
         <% end %>
-
+      </ul>
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-nav dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -38,7 +35,7 @@
             <%= link_to 'Iniciar sesión', user_session_path, class: 'btn btn-outline-primary' %>
           </li>
         <% end %>
-      </ul>
+
 
 
     </div>
