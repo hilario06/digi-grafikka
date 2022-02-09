@@ -21,6 +21,6 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :messages, dependent: :destroy # innecesario para el chat
   has_many :reviews, dependent: :destroy
-
+  has_many :chatrooms
   acts_as_voter #likes
 end

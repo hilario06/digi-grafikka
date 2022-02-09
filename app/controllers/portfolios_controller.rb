@@ -25,17 +25,23 @@ class PortfoliosController < ApplicationController
     end
   end
 
-  def welcome1
+  def has_chat
+    @chatroom = Chatroom.where(user_id: current_user.id)
+                        .and(Chatroom.where(portfolio_id: params[:portfolio_id]))
+    if @chatroom.exists?
+      redirect_to chatroom_path(@chatroom[0].id)
+    else
+      @new_chatroom = Chatroom.new(user_id: current_user.id, portfolio_id: params[:portfolio_id])
+      @new_chatroom.save
+      redirect_to chatroom_path(@new_chatroom)
+    end
+  end
 
+  def chats
+    @chatrooms = Chatroom.where(portfolio_id: params[:id])
   end
 
   def index
-    # if params[:query].present?
-    #   @portfolios = policy_scope(Portfolio).where("title ILIKE ?  OR author ILIKE ?", "%#{params[:query]}%","%#{params[:query]}%")
-    # # qu epusieron para las busquedas?
-    # else
-    #   @portfolios = policy_scope(Portfolio).order(created_at: :desc)
-    # end
     @technologies = %w[Photoshop InDesign CorelDraw Illustrator Inkscape Sketch Canva Photoscape Other]
     @filters = %w[Most-liked Most-followed]
     return @portfolios = Portfolio.tagged_with(params[:technology]) if params[:technology]

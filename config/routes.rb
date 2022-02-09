@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     # collection do
       # put "welcome"
     # end
+    member do
+      get :chats
+    end
     resources :reviews, only: :create
     resources :designs, only: [ :index, :new, :create ]
     resources :orders, only: [ :new, :create ]
@@ -27,9 +30,10 @@ Rails.application.routes.draw do
   get 'welcome', to: 'portfolios#welcome', as: 'welcome'
   resources :orders, only: [ :index, :show, :edit, :update, :destroy ]
   resources :followers, only: [ :index, :show, :edit, :update, :destroy ]
-  resources :chatrooms, only: :show do
-  resources :messages, only: :create
-end
+  resources :chatrooms, only: [ :index, :show ] do
+    resources :messages, only: :create
+  end
+  post 'has_chat', to: 'portfolios#has_chat'
   # resources :technologies, only: [ :new, :create ]
   # resources :designs_technologies, only: [ :index, :new, :create ]
 end
