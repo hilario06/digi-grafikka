@@ -10,7 +10,7 @@
       </li>
       <% @technologies.each do |technology| %>
         <li>
-          <%= link_to technology, technology_path(technology), 
+          <%= link_to technology, technology_path(technology),
             class: "dropdown-item", style: 'display: inline' %>
         </li>
       <% end %>
@@ -24,7 +24,7 @@
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
       <% @filters.each do |filter| %>
         <li>
-          <%= link_to filter, filter_path(filter), 
+          <%= link_to filter, filter_path(filter),
             class: "dropdown-item", style: 'display: inline' %>
         </li>
       <% end %>
@@ -47,7 +47,7 @@
         </div>
         <div class="container-tech text-center" style="margin-top: -30px">
           <%= link_to portfolio_path(portfolio) do %>
-            <%= image_tag "#{portfolio.user.image}", width: 100, class: 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm' %>
+            <%= image_tag "#{portfolio.user.image}", width: 100, class: 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm img-user' %>
           <% end %>
           <h6 class="mb-0">
             <%= link_to "#{portfolio.user.name} #{portfolio.user.last_name}", portfolio_path(portfolio) %>

@@ -5,7 +5,7 @@
   <!--content de edit-->
   <div data-edit-design-target="infos" class="<%= 'd-none' if design.errors.any? %>">
     <div class="text-center">
-      <%= image_tag("diseno-grafico.jpg", class:"img-fluid mb-3 img-thumbnail shadow-sm") %>
+      <%= image_tag "#{design.image}", class: 'img-fluid mb-3 img-thumbnail shadow-sm' %>
     </div>
     <h6 class="mb-0"><%= design.title %></h6>
     <span class="small text-muted"><%= design.description %></span>

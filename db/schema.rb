@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(version: 2022_02_08_203252) do
   create_table "chatrooms", force: :cascade do |t|
     t.string "name"
     t.bigint "portfolio_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["portfolio_id"], name: "index_chatrooms_on_portfolio_id"
+    t.index ["user_id"], name: "index_chatrooms_on_user_id"
   end
 
   create_table "design_technologies", force: :cascade do |t|
@@ -155,6 +157,7 @@ ActiveRecord::Schema.define(version: 2022_02_08_203252) do
   end
 
   add_foreign_key "chatrooms", "portfolios"
+  add_foreign_key "chatrooms", "users"
   add_foreign_key "design_technologies", "designs"
   add_foreign_key "design_technologies", "technologies"
   add_foreign_key "designs", "portfolios"
