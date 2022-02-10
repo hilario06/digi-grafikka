@@ -34,6 +34,9 @@
             <% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Mi cuenta", edit_user_registration_path, class: "dropdown-item" %>
+              <% if current_user.portfolio %>
+                <%= link_to "Mi perfil", portfolio_path(current_user.portfolio), class: "dropdown-item" %>
+              <% end %>
               <%= link_to "Mis seguidores", followers_path, class: "dropdown-item" %>
               <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
