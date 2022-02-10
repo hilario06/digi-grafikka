@@ -2,7 +2,7 @@
   <% if current_user.id == @chatroom.user_id || @chatroom.portfolio_id == current_user.portfolio.id %>
   <div class="portfolios-container">
     <div class="container">
-      <h1>#<%= @chatroom.name %></h1>
+      <h1><%= @portfolio %></h1>
       <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
         <% @chatroom.messages.each do |message| %>
           <%= render 'messages/message', message: message %>

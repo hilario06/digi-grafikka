@@ -11,15 +11,15 @@
     <div class="carousel-item">
        <%= image_tag("2caresp.png" , class: "d-block w-100")%>
       <div class="carousel-caption d-none d-md-block">
-        <button type="button" class="button-card-banner2">Conviértete en diseñador</button>
+        <%= link_to 'Conviértete en diseñador', is_portfolio_path, method: 'put', class: "button-card-banner2" %>
         <p></p>
       </div>
     </div>
     <div class="carousel-item">
       <%= image_tag("3caresp.png" , class: "d-block w-100")%>
       <div class="carousel-caption d-none d-md-block">
-      <button type="button" class="button-card-banner3">Elige tu diseñador</button>
-        <p></p>
+       <%= link_to 'Elige tu diseñador', portfolios_path, class: "button-card-banner3" %>
+       <p></p>
       </div>
     </div>
   </div>
