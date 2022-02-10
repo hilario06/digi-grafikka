@@ -1,7 +1,10 @@
 <%= simple_form_for(portfolio) do |f| %>
   <div class="form-inputs" style="color:white">
-    <%= f.input :about, label: 'Título:' %>
-    <%= f.input :technology_ids, as: :select, label: 'Technologies',
+    <%= f.input :about, label: 'Agrega una descripción personal para que te conozcan:' %>
+    <%= f.input :career, label: 'Agrega tus estudios profesionales:' %>
+    <%= f.input :years_of_experience, label: '¿Cuántos años tienes de experiencia?:' %>
+    <%= f.input :technology_ids, as: :select, label: 'Tecnologías:',
+            hint: '(Presiona la tecla Ctrl para seleccionar más de una opción)',
             collection: Technology.order(:name), label_method: :name, input_html: { multiple: true } %>
   </div>
 

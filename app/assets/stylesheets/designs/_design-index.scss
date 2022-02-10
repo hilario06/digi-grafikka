@@ -1,0 +1,21 @@
+.container-designs-index{
+  background-color: #22223B;
+  .collapse{
+    .card{
+      background-color: transparent;
+      form{
+        div{
+          label{
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  form{
+    .form-control{
+      background-color: transparent;
+      color:#fff;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.container-reviews{
+  .container-user{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .content-user{
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .content-body-review{
+    display: flex;
+  }
+}
