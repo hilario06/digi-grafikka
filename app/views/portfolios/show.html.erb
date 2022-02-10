@@ -72,15 +72,15 @@
         </div>
         <div class="tab-pane fade sobre-mi" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
           <h4>Sobre mi:</h4>
-          <p style='font-size: 18px; text-align: justify'>Se puede decir que soy un tipo que ha 
-            tenido la suerte de trabajar en lo que le gusta y le apasiona estos últimos 25 años de su vida. 
-            Soy egresado del Instituto Superior de Comunicación Visual de Rosario con el título 
-            de Diseñador Gráfico. Realizo cursos, másteres para mejorar mi formación y estar 
-            permanentemente actualizado en esta profesión tan cambiante. He tenido el privilegio 
-            de trabajar en empresas de diversos sectores como Parques Reunidos, Lanetro Zed, 
-            Recoletos Grupo de Comunicación (Unidad Editorial), Publicis Dialog, Ahorro 
-            Corporación Financiera entre otras. En la actualidad trabajo como freelance para 
-            clientes que con su confianza en mi trabajo me permiten continuar con mi desarrollo 
+          <p style='font-size: 18px; text-align: justify'>Se puede decir que soy un tipo que ha
+            tenido la suerte de trabajar en lo que le gusta y le apasiona estos últimos 25 años de su vida.
+            Soy egresado del Instituto Superior de Comunicación Visual de Rosario con el título
+            de Diseñador Gráfico. Realizo cursos, másteres para mejorar mi formación y estar
+            permanentemente actualizado en esta profesión tan cambiante. He tenido el privilegio
+            de trabajar en empresas de diversos sectores como Parques Reunidos, Lanetro Zed,
+            Recoletos Grupo de Comunicación (Unidad Editorial), Publicis Dialog, Ahorro
+            Corporación Financiera entre otras. En la actualidad trabajo como freelance para
+            clientes que con su confianza en mi trabajo me permiten continuar con mi desarrollo
             profesional.</p>
             <div class='perfil-cards'>
               <div class="card" style="width: 18rem;">
@@ -122,35 +122,43 @@
       <% else %>
         <h2>Comentarios</h2>
         <% @portfolio.reviews.order('created_at DESC').each do |review| %>
-          <div class="card">
-            <h5 class="card-header" style='background-color: hsla(0, 0, 0, 0.05)'>
-              <p><%= review.title %></p>
-              <span class='text-muted', style='font-size: 15px'>
-                <%= review.created_at.utc.localtime("-05:00").strftime("%h %d, %Y - %I:%M %p") %>
-              </span>
-            </h5>
-            <div class="card-body">
-              <% if user_signed_in? && review.user == current_user %>
-                <%= link_to "Remove",
-                      review_path(review, :portfolio_id => review.portfolio),
-                      method: :delete,
-                      class: 'product-remove',
-                      data: { confirm: "¿Estás seguro?" } %>
-              <% end %>
-              <h5 class="card-rating mt-2">
-                <% review.rating.times do  %>
-                  <i class="fas fa-star" style='color: #FFCE00'></i>
-                <% end %>
-                <% review.blank_stars.times do %>
-                  <i class="far fa-star" style='color: #FFCE00'></i>
-                <% end %>
-                <div class='text-right'>
-                  <p class='text-muted' style='font-size: 18px'>Autor:
-                    <%= "#{review.user.email}" %>
+          <div class="container-reviews">
+            <div class="container-user">
+              <div class="content-user">
+                <figure class="m-0">
+                  <%= image_tag "#{review.user.image}", width: 70, height: 70, class: 'img-fluid rounded-circle img-thumbnail shadow-sm img-user' %>
+                </figure>
+                <div class="ps-2">
+                  <p class="m-0"><%= review.user.name %> <%= review.user.last_name %></p>
+                  <p class="small text-muted m-0">
+                    <% review.rating.times do  %>
+                      <i class="fas fa-star" style='color: #FFCE00'></i>
+                    <% end %>
+                    <% review.blank_stars.times do %>
+                      <i class="far fa-star" style='color: #FFCE00'></i>
+                    <% end %> &nbsp;|&nbsp;
+                    <%= review.created_at.utc.localtime("-05:00").strftime("%h %d, %Y - %I:%M %p") %>
                   </p>
-                  </div>
-              </h5>
-              <p class="card-text"><p><%= review.content %></p></p>
+                </div>
+              </div>
+              <div class="pe-3">
+                <% if user_signed_in? && review.user == current_user %>
+                  <%= link_to review_path(review, :portfolio_id => review.portfolio),
+                    method: :delete,
+                    class: 'product-remove btn',
+                    data: { confirm: "¿Estás seguro?" } do %>
+                    <i class="fas fa-trash"></i>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="content-body-review">
+              <div style="width: 90px"></div>
+              <div>
+                <h6 style="margin-bottom: 2px;"><%= review.title %></h6>
+                <p><%= review.content %></p>
+              </div>
             </div>
           </div>
         <% end %>
