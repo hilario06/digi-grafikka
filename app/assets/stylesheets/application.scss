@@ -14,12 +14,12 @@
 
 body {
   position: relative;
-  height: 100vh;
+  height: 100%;
 }
 .footer {
   position: absolute;
   bottom: 0px;
-  width: 100vw;
+  width: 100%;
 }
 
 @import './users/user_form';
@@ -38,7 +38,7 @@ body {
     position: absolute;
     bottom: 0px;
     width: 100%;
-    margin-bottom: -175px;
+    margin-bottom: -102px;
 }
 
 .chat-messages {
