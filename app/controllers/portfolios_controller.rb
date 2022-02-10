@@ -1,5 +1,5 @@
 class PortfoliosController < ApplicationController
-  before_action :set_portfolio, only: %i[show edit update destroy]
+  before_action :set_portfolio, only: %i[show edit new create update destroy]
 
   def follow
     @portfolio = Portfolio.all.find(params[:id])
@@ -53,6 +53,7 @@ class PortfoliosController < ApplicationController
     @filters = ['Likes ↓', 'Seguidores ↓', 'Likes ↑', 'Seguidores ↑']
     return @portfolios = Portfolio.tagged_with(params[:technology]) if params[:technology]
     return @portfolios = Portfolio.sort_portfolios_by(params[:filter]) if params[:filter]
+
     @portfolios = Portfolio.all
   end
 
@@ -80,7 +81,6 @@ class PortfoliosController < ApplicationController
   end
 
   def create
-    @portfolio = Portfolio.new(params[:portfolio])
     @portfolio.save
     # @portfolio = current_user.portfolios.new(portfolio_params)
     # authorize @portfolio
