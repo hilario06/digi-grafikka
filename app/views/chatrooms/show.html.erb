@@ -1,16 +1,17 @@
 <% if user_signed_in? %>
   <% if current_user.id == @chatroom.user_id || @chatroom.portfolio_id == current_user.portfolio.id %>
-  <div class="portfolios-container">
+  <div class="messages-container" style='padding-bottom: 150px'>
     <div class="container">
-      <h1><%= @portfolio %></h1>
-      <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+      <h1 style='margin: 30px 0px'>Chat</h1>
+      <div style='margin-bottom: 30px' id="messages" data-chatroom-id="<%= @chatroom.id %>">
         <% @chatroom.messages.each do |message| %>
           <%= render 'messages/message', message: message %>
         <% end %>
       </div>
 
-      <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-        <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+      <%= simple_form_for [ @chatroom, @message ], 
+      remote: true do |f| %>
+        <%= f.input :content, label: false, placeholder: "Escribe tu mensaje" %>
       <% end %>
     </div>
   </div>

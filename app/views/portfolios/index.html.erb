@@ -1,5 +1,5 @@
-<div style="background-color: #22223B;" class="pb-3">
-  <div class='sort-container'>
+<div style="background-color: #F1E9E4; margin-top: 20px;" class="pb-3">
+  <div class='sort-container' style='margin-bottom: 20px'>
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         Escoge una tecnología
@@ -32,26 +32,27 @@
       </ul>
     </div>
   </div>
-  <div class="container my-4">
+  <div class="container" style='margin-bottom: 150px'>
     <div class="auto-grid-designs">
       <% @portfolios.each do |portfolio| %>
-        <div class="rounded shadow-sm pb-3 card card-index-porfios">
+        <div class="rounded shadow-sm pb-3 card card-index-porfios" style='background-color: rgba(36, 56, 90, 0.9)'>
           <div class="container-designs">
             <div>
-              <%= image_tag("#{portfolio.designs.sample.image}", class:"") %>
+              <%= image_tag("#{portfolio.designs.sample.image}", style:'border-bottom: 1px solid black') %>
             </div>
             <div>
-              <%= image_tag("#{portfolio.designs.sample.image}", class:"") %>
+              <%= image_tag("#{portfolio.designs.sample.image}", style:'border-bottom: 1px solid black') %>
             </div>
           </div>
           <div class="container-tech text-center" style="margin-top: -30px">
             <%= link_to portfolio_path(portfolio) do %>
-              <%= image_tag "#{portfolio.user.image}", width: 100, class: 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm img-user' %>
+              <%= image_tag "#{portfolio.user.image}", width: 100, style: 'background-color: #F1E9E4',
+              class: 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm img-user' %>
             <% end %>
             <h6 class="mb-0">
               <%= link_to "#{portfolio.user.name} #{portfolio.user.last_name}", portfolio_path(portfolio) %>
             </h6>
-            <span class="small text-muted"><i class="fas fa-map-marker-alt"></i><%= " #{portfolio.user.address}" %></span>
+            <span style='color: white; font-weight: 200' class="small "><i class="fas fa-map-marker-alt"></i><%= " #{portfolio.user.address}" %></span>
 
             <div class='index-technologies'>
               <% portfolio.tag_list.split(', ').each do |technology| %>
@@ -62,16 +63,18 @@
           <div class="content-favorites-and-likes">
             <div>
               <p class="m-0 text-center"><%= "#{portfolio.total_followers} " %></p>
-              <p class="small text-muted m-0 text-center">seguidores</p>
+              <p style="color: white" class="small m-0 text-center">seguidores</p>
             </div>
             <div>
               <p class="m-0 text-center"><%= "#{portfolio.total_likes.round(0)} " %></p>
-              <p class="small text-muted m-0 text-center">likes</p>
+              <p style="color: white" class="small m-0 text-center">likes</p>
             </div>
           </div>
-          <div class="button-card-portfolio mt-4">
-            <p class="text-center mensaje">
-              <a href="#"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Mensaje</a>
+          <div class="button-card-portfolio mt-4" >
+            <p class="text-center mensaje" >
+              <%= link_to has_chat_path(:portfolio_id => portfolio), method: "post", class: 'portfolios-btn'  do %>
+                <i class="fas fa-envelope"></i></i>&nbsp;&nbsp;Mensaje
+              <% end %>
             </p>
           </div>
         </div>
