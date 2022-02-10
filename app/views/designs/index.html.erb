@@ -18,8 +18,9 @@
       method: :get, html: { class: 'mb-4', data: { search_designs_target: 'searchForm' } } do |f| %>
         <%= f.text_field :query,
                           class: "form-control",
-                          placeholder: 'Search design',
+                          placeholder: 'Buscar diseño',
                           value: params[:query],
+                          style: 'background-color: white',
                           data: {
                             search_designs_target: 'searchInput',
                             action: 'keyup->search-designs#update'
