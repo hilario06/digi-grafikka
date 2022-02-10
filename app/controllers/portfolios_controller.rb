@@ -30,8 +30,7 @@ class PortfoliosController < ApplicationController
                         .and(Chatroom.where(portfolio_id: params[:portfolio_id])) ||
                 Chatroom.where(user_id: params[:portfolio_id])
                         .and(Chatroom.where(portfolio_id: current_user.id))
-  
-    
+
     if @chatroom.exists?
       redirect_to chatroom_path(@chatroom[0].id)
     else
@@ -57,6 +56,7 @@ class PortfoliosController < ApplicationController
     @filters = ['Likes ↓', 'Seguidores ↓', 'Likes ↑', 'Seguidores ↑']
     return @portfolios = Portfolio.tagged_with(params[:technology]) if params[:technology]
     return @portfolios = Portfolio.sort_portfolios_by(params[:filter]) if params[:filter]
+
     @portfolios = Portfolio.all
   end
 
@@ -84,8 +84,9 @@ class PortfoliosController < ApplicationController
   end
 
   def create
+    # @portfolio = current_user.portfolios.new(portfolio_params)
     @portfolio = Portfolio.new(portfolio_params)
-    
+
     @portfolio.user_id = current_user
     # authorize @portfolio
     if @portfolio.save

@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: rgba(246, 98, 0, 0.9)">
+<nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background: #21223B; -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">DIGI GRAFIKKA</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,15 +25,20 @@
         <% if user_signed_in? %>
           <li class="nav-item dropdown", style='list-style-type: none;'>
             <% if current_user.image.nil? %>
-              <%= image_tag "avatar.png", class: "avatar-nav dropdown-toggle", id: "navbarDropdown", 
+              <%= image_tag "avatar.png", class: "avatar-nav dropdown-toggle", id: "navbarDropdown",
               data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, style: 'background-color: black' %>
             <% else %>
-              <%= image_tag "#{current_user.image}", class: "avatar-nav dropdown-toggle", 
-                id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 
-                'aria-haspopup': true, 'aria-expanded': false, style: 'background-color: white' %>            
+              <%= image_tag "#{current_user.image}", class: "avatar-nav dropdown-toggle",
+                id: "navbarDropdown", data: { bs_toggle: "dropdown" },
+                'aria-haspopup': true, 'aria-expanded': false, style: 'background-color: white' %>
             <% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Mi cuenta", edit_user_registration_path, class: "dropdown-item" %>
+              <% if current_user.portfolio %>
+                <%= link_to "Mi perfil", portfolio_path(current_user.portfolio), class: "dropdown-item" %>
+              <% end %>
+             <%#<%= link_to "Mi cuenta", portfolio_path(current_user.portfolio), class: "dropdown-item" %>
+              <%= link_to "Editar cuenta", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Mis seguidores", followers_path, class: "dropdown-item" %>
               <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>

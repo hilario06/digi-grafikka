@@ -18,6 +18,11 @@
 
 
 .card-index-porfios{
+  background-color: #24385b;
+  transition: all 0.25s;
+  &:hover{
+    transform: translateY(-10px);
+  }
   .container-designs{
     display: flex;
     height: 85px;
@@ -30,12 +35,25 @@
       }
     }
   }
+  .container-tech{
+    h6{
+      a{
+        color:#fff;
+      }
+    }
+    span{
+      i{
+        color: #33b1ff;
+      }
+    }
+  }
   .content-favorites-and-likes{
     display: flex;
     justify-content: space-between;
     align-items: center;
     p{
       line-height: 1;
+      color: #fff;
       &:nth-child(2){
         font-size: 13.5px;
       }
@@ -49,22 +67,13 @@
     }
   }
   .button-card-portfolio{
-    .seguir{
-      a{
-        background-color: #A77E69;
-        color:#fff;
-        text-decoration: none;
-        padding: 8px 59px;
-        border-radius: 20px;
-      }
-    }
     .mensaje{
       a{
-        background-color: #f5f8ff;
+        background-color: transparent;
         border: 1px solid transparent;
         border-color: #dee8ff;
         //color: #003ecb;
-        color: #A77E69;
+        color: #fff;
         text-decoration: none;
         padding: 8px 50px;
         border-radius: 20px;
