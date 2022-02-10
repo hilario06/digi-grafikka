@@ -3,9 +3,9 @@
 <% else %>
   <div class='chat-messages'>
 <% end %>  
-  <% if current_user.image.nil? %>
+  <% if current_user.image.nil? || message.user.image.nil? %>
     <%= image_tag "avatar.png", class: "avatar-message" %> 
-  <% else %>
+  <% else %>  
     <%= image_tag "#{message.user.image}", class: "avatar-message" %> 
   <% end %>
   <div class="message-container" id="message-<%= message.id %>">
