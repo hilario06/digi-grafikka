@@ -1,5 +1,5 @@
 class PortfoliosController < ApplicationController
-  before_action :set_portfolio, only: %i[show edit new create update destroy]
+  before_action :set_portfolio, only: %i[show edit update destroy]
 
   def follow
     @portfolio = Portfolio.all.find(params[:id])
@@ -30,7 +30,6 @@ class PortfoliosController < ApplicationController
                         .and(Chatroom.where(portfolio_id: params[:portfolio_id])) ||
                 Chatroom.where(user_id: params[:portfolio_id])
                         .and(Chatroom.where(portfolio_id: current_user.id))
-
 
     if @chatroom.exists?
       redirect_to chatroom_path(@chatroom[0].id)
