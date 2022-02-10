@@ -27,7 +27,7 @@ puts "Iniciando los seed"
     end
   end
   user = User.create(
-    email: "user#{j}@lewagon.com",
+    email: "user#{j + 1}@lewagon.com",
     password: '123456',
     image: Faker::Avatar.image,
     name: Faker::Name.first_name,

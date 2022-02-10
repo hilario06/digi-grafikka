@@ -1,5 +1,5 @@
 class PortfoliosController < ApplicationController
-  before_action :set_portfolio, only: %i[show edit update destroy]
+  before_action :set_portfolio, only: %i[show edit new create update destroy]
 
   def follow
     @portfolio = Portfolio.all.find(params[:id])
@@ -27,7 +27,11 @@ class PortfoliosController < ApplicationController
 
   def has_chat
     @chatroom = Chatroom.where(user_id: current_user.id)
-                        .and(Chatroom.where(portfolio_id: params[:portfolio_id]))
+                        .and(Chatroom.where(portfolio_id: params[:portfolio_id])) ||
+                Chatroom.where(user_id: params[:portfolio_id])
+                        .and(Chatroom.where(portfolio_id: current_user.id))
+
+
     if @chatroom.exists?
       redirect_to chatroom_path(@chatroom[0].id)
     else
@@ -53,6 +57,7 @@ class PortfoliosController < ApplicationController
     @filters = ['Likes ↓', 'Seguidores ↓', 'Likes ↑', 'Seguidores ↑']
     return @portfolios = Portfolio.tagged_with(params[:technology]) if params[:technology]
     return @portfolios = Portfolio.sort_portfolios_by(params[:filter]) if params[:filter]
+
     @portfolios = Portfolio.all
   end
 
@@ -80,15 +85,16 @@ class PortfoliosController < ApplicationController
   end
 
   def create
-    @portfolio = Portfolio.new(params[:portfolio])
-    @portfolio.save
     # @portfolio = current_user.portfolios.new(portfolio_params)
+    @portfolio = Portfolio.new(portfolio_params)
+
+    @portfolio.user_id = current_user
     # authorize @portfolio
-    # if @portfolio.save
-    #   redirect_to portfolio_path(@portfolio)
-    # else
-    #   render :new
-    # end
+    if @portfolio.save
+      redirect_to portfolios_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -123,7 +129,8 @@ class PortfoliosController < ApplicationController
 
   def portfolio_params
     params.require(:portfolio).permit(
-      :about, :tag_list, :technology, { technology_ids: [] }, :technology_ids
+      :about, :tag_list, :technology, { technology_ids: [] }, :technology_ids,
+      :career, :years_of_experience
     )
   end
 end

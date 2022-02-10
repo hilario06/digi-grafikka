@@ -1,6 +1,11 @@
 .card-design{
+  background-color: #24385b;
+  transition: all 0.25s;
+  &:hover{
+    transform: translateY(-10px);
+  }
   h6{
-    color:#A77E69;
+    color:#fff;
   }
   img{
     height: 180px;
@@ -10,24 +15,22 @@
   i{
     width: 30px;
     height: 30px;
-    border: 1px solid #ddd;
+    border: 1px solid #33b1ff;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
+    color: #33b1ff;
     border-radius: 50%;
     transition: all 0.3s;
     font-size: 0.9rem;
     text-decoration: none;
     &:hover{
-      background: #ddd;
       text-decoration: none;
-      color: #A77E69;
+      color: #33b1ff;
     }
     &:focus{
-      background: #ddd;
       text-decoration: none;
-      color: #A77E69;
+      color: #33b1ff;
     }
   }
 }
