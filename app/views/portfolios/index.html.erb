@@ -37,12 +37,29 @@
       <% @portfolios.each do |portfolio| %>
         <div class="rounded shadow-sm pb-3 card card-index-porfios" style='background-color: rgba(33, 34, 59, 0.9)'>
           <div class="container-designs">
-            <div>
-              <%= image_tag("#{portfolio.designs.sample.image}", style:'border-bottom: 1px solid black') %>
-            </div>
-            <div>
-              <%= image_tag("#{portfolio.designs.sample.image}", style:'border-bottom: 1px solid black') %>
-            </div>
+            <% @portfolio1 = portfolio.designs.sample %>
+            <% @portfolio2 = portfolio.designs.sample %>
+            <% if @portfolio1.photo.key %>
+              <div>
+                <%= cl_image_tag @portfolio1.photo.key, crop: :fill %>
+              </div>
+            <% else %>
+              <div>
+                <%= image_tag("#{@portfolio1.image}") %>
+              </div>
+            <% end %>
+
+            <% if @portfolio2.photo.key %>
+              <div>
+                <%= cl_image_tag @portfolio2.photo.key, crop: :fill %>
+              </div>
+            <% else %>
+              <div>
+                <%= image_tag("#{@portfolio2.image}") %>
+              </div>
+            <% end %>
+
+
           </div>
           <div class="container-tech text-center" style="margin-top: -30px">
             <%= link_to portfolio_path(portfolio) do %>

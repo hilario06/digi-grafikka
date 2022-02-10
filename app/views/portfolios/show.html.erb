@@ -52,7 +52,11 @@
             <% @portfolio.designs.each do |design| %>
               <div class="card">
                 <div class="img-container img-design" style="">
-                  <%= image_tag("#{design.image}") %>
+                  <% if design.photo.key %>
+                    <%= cl_image_tag design.photo.key, crop: :fill %>
+                  <% else %>
+                    <%= image_tag "#{design.image}"%>
+                  <% end %>
                 </div>
                 <div class="card-body">
                   <h5 class="card-title text-center"><%= design.title %></h5>

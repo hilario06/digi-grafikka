@@ -12,7 +12,7 @@ export default class extends Controller {
 
   delete(event){
     // event.preventDefault();
-    console.log(window.scrollY);
+    //console.log(window.scrollY);
     const currentY = window.scrollY;
     window.scrollTo(0, currentY);
   }
