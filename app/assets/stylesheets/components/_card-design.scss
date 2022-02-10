@@ -15,22 +15,22 @@
   i{
     width: 30px;
     height: 30px;
-    border: 1px solid #33b1ff;
+    border: 1px solid #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #33b1ff;
+    color: #fff;
     border-radius: 50%;
     transition: all 0.3s;
     font-size: 0.9rem;
     text-decoration: none;
     &:hover{
       text-decoration: none;
-      color: #33b1ff;
+      color: #fff;
     }
     &:focus{
       text-decoration: none;
-      color: #33b1ff;
+      color: #fff;
     }
   }
 }
