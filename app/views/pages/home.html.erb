@@ -1,28 +1,39 @@
-<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-       <%= image_tag("1caresp.png" , class: "d-block w-100")%>
+<div style="background-color: #22223B;">
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-    <div class="carousel-item">
-       <%= image_tag("2caresp.png" , class: "d-block w-100")%>
-      <div class="carousel-caption d-none d-md-block">
-        <%= link_to 'Conviértete en diseñador', is_portfolio_path, method: 'put', class: "button-card-banner2" %>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= image_tag("1caresp.png" , class: "d-block w-100")%>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag("2caresp.png" , class: "d-block w-100")%>
+        <div class="carousel-caption d-none d-md-block">
+          <%= link_to 'Conviértete en diseñador', is_portfolio_path, method: 'put', class: "button-card-banner2" %>
+          <p></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag("3caresp.png" , class: "d-block w-100")%>
+        <div class="carousel-caption d-none d-md-block">
+        <%= link_to 'Elige tu diseñador', portfolios_path, class: "button-card-banner3" %>
         <p></p>
+        </div>
       </div>
     </div>
-    <div class="carousel-item">
-      <%= image_tag("3caresp.png" , class: "d-block w-100")%>
-      <div class="carousel-caption d-none d-md-block">
-       <%= link_to 'Elige tu diseñador', portfolios_path, class: "button-card-banner3" %>
-       <p></p>
-      </div>
-    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
+<<<<<<< HEAD
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
@@ -97,34 +108,98 @@
           <a href="#" class="btn-card-home">
             Leer más
           </a>
+=======
+  <br />
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card" style="width: 15rem;">
+          <%= image_tag("card1.jfif" , class: "card-img-top")%>
+          <div class="card-body">
+            <h5 class="card-title">
+              Novedades
+            </h5>
+            <p class="card-text">
+              Puedes encontrar las ultimas publicaciones de nuestros usuarios,los más creativos del mes.
+            </p>
+            <a href="#" class="btn btn-primary">
+              Ver
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card" style="width: 15rem;">
+          <%= image_tag("card2.jfif" , class: "card-img-top")%>
+          <div class="card-body">
+            <h5 class="card-title">
+              Trending
+            </h5>
+            <p class="card-text">
+              Conoce más acerca de las tendencias en los portafolios mas populares de toda  Digi Grafikka.
+            </p>
+            <a href="#" class="btn btn-primary">
+              Ver
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card" style="width: 15rem;">
+          <%= image_tag("card4.jfif" , class: "card-img-top")%>
+          <div class="card-body">
+            <h5 class="card-title">
+              Comunidad
+            </h5>
+            <p class="card-text">
+            Forma parte de la más grande comunidad de creativos en el mundo,forma parte de esta gran familia.
+            </p>
+            <a href="#" class="btn btn-primary">
+              Unéte
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card" style="width: 15rem;">
+          <%= image_tag("card3.jpg" , class: "card-img-top")%>
+          <div class="card-body">
+            <h5 class="card-title">
+              Preguntas frecuentes
+            </h5>
+            <p class="card-text">
+              Aqui podrás encontrar respuesta a tus dudas,descuida alguien tuvo la misma pregunta .
+            </p>
+            <a href="#" class="btn btn-primary">
+              Leer más
+            </a>
+          </div>
+>>>>>>> 4c873204c6abaa9018df0ffcad339957ed830b3a
         </div>
       </div>
     </div>
   </div>
-</div>
-<br />
-<div class= "container">
-  <div class="card card-image text-white" style= "width:1093px;  height:220px;">
-    <div class="card-img-overlay">
-      <h5 class="card-title">¿Quiénes somos?</h5>
-      <p class="card-text">Digi Grafikka busca crear un lugar seguro para los diseñadores que quieran expandir su trabajo y usuarios que quieran recibir sus servivios,ademas de poder crear comunidades creativas en Latinoamerica ,queremos poder promover el arte como estilo de vida.</p>
+  <br />
+  <div class= "container">
+    <div class="card card-image text-white" style= "width:1093px;  height:220px;">
+      <div class="card-img-overlay">
+        <h5 class="card-title">¿Quiénes somos?</h5>
+        <p class="card-text">Digi Grafikka busca crear un lugar seguro para los diseñadores que quieran expandir su trabajo y usuarios que quieran recibir sus servivios,ademas de poder crear comunidades creativas en Latinoamerica ,queremos poder promover el arte como estilo de vida.</p>
+      </div>
     </div>
   </div>
-</div>
-
 
   <div style= "width:100%; ">
      <%= image_tag("Testimonios1.png", style:"width:100%; " )%>
   </div>
 
-
-
- <div class="formulario" style= "width:100%; ">
-     <%= image_tag("formulario.png", style:"width:100%; " )%>
-      <button type="button" class="button-card-banner4">Join us in Slack</button>
-       <button type="button" class="button-card-banner5">Suscríbete</button>
-   <div class="input-group flex-nowrap">
-    <span class="input-group-text" id="addon-wrapping">@</span>
-    <input type="text" class="form-control" placeholder="gmail" aria-label="gmail" aria-describedby="addon-wrapping">
-   </div>
- </div>
+  <div class="formulario" style= "width:100%; ">
+      <%= image_tag("formulario.png", style:"width:100%; " )%>
+        <button type="button" class="button-card-banner4">Join us in Slack</button>
+        <button type="button" class="button-card-banner5">Suscríbete</button>
+    <div class="input-group flex-nowrap">
+      <span class="input-group-text" id="addon-wrapping">@</span>
+      <input type="text" class="form-control" placeholder="gmail" aria-label="gmail" aria-describedby="addon-wrapping">
+    </div>
+  </div>
+</div>
