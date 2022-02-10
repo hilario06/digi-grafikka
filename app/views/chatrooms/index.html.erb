@@ -6,12 +6,16 @@
         <div class="follower bg-white has-shadow my-3 p-2">
           <span>
             <%= link_to chatroom_path(chatroom) do %>
-              <%= image_tag "#{chatroom.portfolio.user.image}", width: 80, class: 'img-fluid rounded-circle img-thumbnail shadow-sm' %>
+              <% if chatroom.user.image.nil? %>
+                 <%= image_tag "avatar.png", width: 80, class: 'img-fluid rounded-circle img-thumbnail shadow-sm' %>
+              <% else %>
+                <%= image_tag "#{chatroom.user.image}", width: 80, class: 'img-fluid rounded-circle img-thumbnail shadow-sm' %>
+              <% end %>
             <% end %>
           </span>
           <div class="description-follower ms-2">
-            <h5 class="m-1"><%= chatroom.portfolio.user.name %> <%= chatroom.portfolio.user.last_name %></h5>
-            <p class="text-muted m-0 ps-1"><%= chatroom.portfolio.user.email %></p>
+            <h5 class="m-1"><%= chatroom.user.name %> <%= chatroom.user.last_name %></h5>
+            <p class="text-muted m-0 ps-1"><%= chatroom.user.email %></p>
           </div>
         </div>
       <% end %>
