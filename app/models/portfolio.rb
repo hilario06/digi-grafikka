@@ -19,7 +19,7 @@ class Portfolio < ApplicationRecord
   has_many :portfolios_technologies, dependent: :destroy
   has_many :technologies, through: :portfolios_technologies
 
-  default_scope { order("created_at DESC") }
+  # default_scope { order("created_at DESC") }
 
   def following?(user)
     !!self.followers.find{|follower| follower.user_id == user.id}
@@ -57,7 +57,7 @@ class Portfolio < ApplicationRecord
       Portfolio.order('total_followers ASC')
     end
   end
-  
+
   def new_follower!
     self.update_columns(total_followers: (self.total_followers + 1))
   end

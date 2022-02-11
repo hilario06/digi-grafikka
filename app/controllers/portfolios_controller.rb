@@ -57,7 +57,7 @@ class PortfoliosController < ApplicationController
     return @portfolios = Portfolio.tagged_with(params[:technology]) if params[:technology]
     return @portfolios = Portfolio.sort_portfolios_by(params[:filter]) if params[:filter]
 
-    @portfolios = Portfolio.all
+    @portfolios = Portfolio.order("created_at DESC")
   end
 
   def show
