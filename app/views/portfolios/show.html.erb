@@ -1,8 +1,24 @@
 <div class="portfolios-container">
   <div class='portfolios-banner'>
-    <%= image_tag("#{@portfolio.user.image}",
-      class: 'portfolios-perfil') %>
-    <%= image_tag("#{@portfolio.designs.sample.image}", class: 'portfolios-background') %>
+
+    <% if @portfolio.user.image %>
+      <%= image_tag "#{@portfolio.user.image}", class: 'portfolios-perfil' %>
+    <% else %>
+      <%= image_tag "avatar.png", class: 'portfolios-perfil' %>
+    <% end %>
+
+    <% if @portfolio.designs.exists? %>
+      <% design = @portfolio.designs.sample %>
+      <% if design.photo.key %>
+        <%= cl_image_tag design.photo.key, crop: :fill, class: 'portfolios-background' %>
+      <% else %>
+        <%= image_tag("#{design.image}", class: 'portfolios-background') %>
+      <% end %>
+    <% else %>
+      <%= image_tag("background.png", class: 'portfolios-background') %>
+    <% end %>
+
+
   </div>
   <div class="container">
     <div class='portfolios-details'>
@@ -19,11 +35,11 @@
             <p class="small text-muted m-0 text-center">likes</p>
           </div>
         </div>
-      <div class='buttons-container text-center' id="button-follower">
+      <div class='buttons-container text-center mb-5' id="button-follower">
         <% if user_signed_in? %>
           <% if current_user == @portfolio.user %>
             <%= link_to 'Mis diseños', portfolio_designs_path(@portfolio), class: 'portfolios-btn' %>
-            <%= link_to 'Mi Chat', chats_portfolio_path(@portfolio), class: 'portfolios-btn' %>
+            <%= link_to 'Mi Chat', chatrooms_path, class: 'portfolios-btn' %>
           <% else %>
             <% if @portfolio.following?(current_user) %>
               <%= button_to "Siguiendo", follow_path(@portfolio), method: "put", remote: true, class: 'portfolios-btn' %>
@@ -35,7 +51,7 @@
         <% end %>
       </div>
 
-      <ul class="nav nav-pills mb-3 mt-5" id="pills-tab" role="tablist">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Mis diseños</button>
         </li>
@@ -46,13 +62,17 @@
           <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contacto</button>
         </li>
       </ul>
-      <div class="tab-content" id="pills-tabContent">
+      <div class="tab-content" id="pills-tabContent" style='padding-bottom: 30px'>
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
           <div class='auto-grid-designs'>
             <% @portfolio.designs.each do |design| %>
               <div class="card">
                 <div class="img-container img-design" style="">
-                  <%= image_tag("#{design.image}") %>
+                  <% if design.photo.key %>
+                    <%= cl_image_tag design.photo.key, crop: :fill %>
+                  <% else %>
+                    <%= image_tag "#{design.image}"%>
+                  <% end %>
                 </div>
                 <div class="card-body">
                   <h5 class="card-title text-center"><%= design.title %></h5>
@@ -72,15 +92,15 @@
         </div>
         <div class="tab-pane fade sobre-mi" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
           <h4>Sobre mi:</h4>
-          <p style='font-size: 18px; text-align: justify'>Se puede decir que soy un tipo que ha 
-            tenido la suerte de trabajar en lo que le gusta y le apasiona estos últimos 25 años de su vida. 
-            Soy egresado del Instituto Superior de Comunicación Visual de Rosario con el título 
-            de Diseñador Gráfico. Realizo cursos, másteres para mejorar mi formación y estar 
-            permanentemente actualizado en esta profesión tan cambiante. He tenido el privilegio 
-            de trabajar en empresas de diversos sectores como Parques Reunidos, Lanetro Zed, 
-            Recoletos Grupo de Comunicación (Unidad Editorial), Publicis Dialog, Ahorro 
-            Corporación Financiera entre otras. En la actualidad trabajo como freelance para 
-            clientes que con su confianza en mi trabajo me permiten continuar con mi desarrollo 
+          <p style='font-size: 18px; text-align: justify'>Se puede decir que soy un tipo que ha
+            tenido la suerte de trabajar en lo que le gusta y le apasiona estos últimos 25 años de su vida.
+            Soy egresado del Instituto Superior de Comunicación Visual de Rosario con el título
+            de Diseñador Gráfico. Realizo cursos, másteres para mejorar mi formación y estar
+            permanentemente actualizado en esta profesión tan cambiante. He tenido el privilegio
+            de trabajar en empresas de diversos sectores como Parques Reunidos, Lanetro Zed,
+            Recoletos Grupo de Comunicación (Unidad Editorial), Publicis Dialog, Ahorro
+            Corporación Financiera entre otras. En la actualidad trabajo como freelance para
+            clientes que con su confianza en mi trabajo me permiten continuar con mi desarrollo
             profesional.</p>
             <div class='perfil-cards'>
               <div class="card" style="width: 18rem;">
@@ -115,62 +135,82 @@
     </div>
 
 
-    <div class='reviews-show mt-5'>
-    <br>
-      <% if @portfolio.reviews.blank? %>
-        <p style='text-align: right'>💬 Sé el primero en dejar un comentario</p>
-      <% else %>
-        <h2>Comentarios</h2>
-        <% @portfolio.reviews.order('created_at DESC').each do |review| %>
-          <div class="card">
-            <h5 class="card-header" style='background-color: hsla(0, 0, 0, 0.05)'>
-              <p><%= review.title %></p>
-              <span class='text-muted', style='font-size: 15px'>
-                <%= review.created_at.utc.localtime("-05:00").strftime("%h %d, %Y - %I:%M %p") %>
-              </span>
-            </h5>
-            <div class="card-body">
-              <% if user_signed_in? && review.user == current_user %>
-                <%= link_to "Remove",
-                      review_path(review, :portfolio_id => review.portfolio),
-                      method: :delete,
-                      class: 'product-remove',
-                      data: { confirm: "¿Estás seguro?" } %>
-              <% end %>
-              <h5 class="card-rating mt-2">
-                <% review.rating.times do  %>
-                  <i class="fas fa-star" style='color: #FFCE00'></i>
-                <% end %>
-                <% review.blank_stars.times do %>
-                  <i class="far fa-star" style='color: #FFCE00'></i>
-                <% end %>
-                <div class='text-right'>
-                  <p class='text-muted' style='font-size: 18px'>Autor:
-                    <%= "#{review.user.email}" %>
-                  </p>
-                  </div>
-              </h5>
-              <p class="card-text"><p><%= review.content %></p></p>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
+    <div data-controller="insert-review-in-list" data-insert-in-list-position-value="beforeend">
 
-    <% if user_signed_in? %>
-      <hr>
-      <div class='review-form'>
-        <p class='text-center mb-5' style='font-size: 25px'>Escribe un comentario</p>
-        <%= simple_form_for([ @portfolio, @review ], remote: true) do |f| %>
-          <%= f.input :title %>
-          <%= f.input :content, as: :text %>
-          <%= f.input :rating %>
-          <div class='text-right mt-5'>
-            <%= f.button :submit, class: 'btn btn-outline-primary' %>
-          </div>
+      <div class='reviews-show mt-5'>
+        <br>
+        <% if @portfolio.reviews.blank? %>
+          <p><i class="far fa-comment-alt"></i>&nbsp; Sé el primero en dejar un comentario</p>
+        <% else %>
+          <h4 class="mb-3">Comentarios</h4>
+          <% @portfolio.reviews.order('created_at DESC').each do |review| %>
+            <div class="container-reviews" data-insert-review-in-list-target="items">
+              <div class="container-user">
+                <div class="content-user">
+                  <figure class="m-0">
+                    <% if review.user.image %>
+                      <%= image_tag "#{review.user.image}", width: 70, height: 70, class: 'img-fluid rounded-circle img-thumbnail shadow-sm img-user' %>
+                    <% else %>
+                      <%= image_tag "avatar.png", width: 70, height: 70, class: 'img-fluid rounded-circle img-thumbnail shadow-sm img-user' %>
+                    <% end %>
+                  </figure>
+                  <div class="ps-2">
+                    <p class="m-0"><%= review.user.name %> <%= review.user.last_name %></p>
+                    <p class="small text-muted m-0">
+                      <% review.rating.times do  %>
+                        <i class="fas fa-star" style='color: #FFCE00'></i>
+                      <% end %>
+                      <% review.blank_stars.times do %>
+                        <i class="far fa-star" style='color: #FFCE00'></i>
+                      <% end %> &nbsp;|&nbsp;
+                      <%= review.created_at.utc.localtime("-05:00").strftime("%h %d, %Y - %I:%M %p") %>
+                    </p>
+
+                    <div class="content-body-review">
+                      <div>
+                        <h6 style="margin-bottom: 2px;"><%= review.title %></h6>
+                        <p><%= review.content %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="pe-3">
+                  <% if user_signed_in? && review.user == current_user %>
+                    <%= link_to review_path(review, :portfolio_id => review.portfolio),
+                      method: :delete,
+                      class: 'product-remove rounded-circle btn',
+                      data: { confirm: "¿Estás seguro?" } do %>
+                      <i class="fas fa-trash"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
-    <% end %>
+
+      <% if user_signed_in? %>
+        <hr>
+        <div class='review-form' style="padding-bottom: 140px;">
+          <p class=''>Introduce tu comentario</p>
+
+          <%= simple_form_for([ @portfolio, @review ], remote: true) do |f| %>
+            <div class="flex-inputs">
+              <%= f.input :title, placeholder: "Titulo", class: "m-2" %>
+              <%= f.input :rating, placeholder: "Valoración" %>
+            </div>
+            <div class="flex-inputs">
+              <%= f.input :content, as: :text, placeholder: "Comentario",class: "m-2" %>
+            </div>
+            <div class='text-right'>
+              <%= f.submit 'Agregar Comentario', class: 'btn btn-outline-primary button-digi-grafikka mb-3' %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+    </div>
 
   </div>
 </div>

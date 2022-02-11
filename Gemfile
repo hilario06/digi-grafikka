@@ -68,3 +68,5 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'annotate', '~> 3.1', '>= 3.1.1'
 gem 'faker', '~> 2.19'
 gem 'acts_as_votable', '~> 0.13.2'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'cloudinary', '~> 1.21'

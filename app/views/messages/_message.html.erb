@@ -1,7 +1,19 @@
-<div class="message-container" id="message-<%= message.id %>">
-  <i class="author">
-    <span><%= message.user.email %></span>
-    <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-  </i>
-  <p><%= message.content %></p>
+<% if message.user == current_user %>
+  <div class='chat-messages' >
+<% else %>
+  <div class='chat-messages'>
+<% end %>
+  <% if message.user.image.nil? %>
+    <%= image_tag "avatar.png", class: "avatar-message" %>
+  <% else %>
+    <%= image_tag "#{message.user.image}", class: "avatar-message" %>
+  <% end %>
+  <div style='width: 730px' class="message-container" id="message-<%= message.id %>">
+    <i class="author">
+
+      <span><%= "#{message.user.name} #{message.user.last_name}" %></span>
+      <small><%= message.created_at.utc.localtime("-05:00").strftime("%b %e - %l:%M %p") %></small>
+    </i>
+    <p><%= message.content %></p>
+  </div>
 </div>

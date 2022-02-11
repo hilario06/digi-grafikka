@@ -1,6 +1,11 @@
 .card-design{
+  background-color: #35354C;
+  transition: all 0.25s;
+  &:hover{
+    transform: translateY(-10px);
+  }
   h6{
-    color:#A77E69;
+    color:#fff;
   }
   img{
     height: 180px;
@@ -10,24 +15,36 @@
   i{
     width: 30px;
     height: 30px;
-    border: 1px solid #ddd;
+    border: 1px solid #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
+    color: #fff;
     border-radius: 50%;
     transition: all 0.3s;
     font-size: 0.9rem;
     text-decoration: none;
     &:hover{
-      background: #ddd;
       text-decoration: none;
-      color: #A77E69;
+      color: #A77F69;
     }
     &:focus{
-      background: #ddd;
       text-decoration: none;
-      color: #A77E69;
+      color: #A77F69;
+    }
+  }
+  form{
+    div{
+      color:#fff;
+      label{
+        color: #fff;
+      }
+      input{
+        color:#fff;
+      }
+      textarea{
+        color:#fff;
+      }
     }
   }
 }

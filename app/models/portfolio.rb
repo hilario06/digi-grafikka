@@ -19,6 +19,8 @@ class Portfolio < ApplicationRecord
   has_many :portfolios_technologies, dependent: :destroy
   has_many :technologies, through: :portfolios_technologies
 
+  default_scope { order("created_at DESC") }
+
   def following?(user)
     !!self.followers.find{|follower| follower.user_id == user.id}
   end

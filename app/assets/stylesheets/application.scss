@@ -12,21 +12,67 @@
 @import "components/index";
 @import "pages/index";
 
-
 @import './users/user_form';
 @import './portfolios/show';
 @import './portfolios/index';
 @import './portfolios/welcome';
+@import './designs/design-index';
 @import './followers/followers-index';
-
+@import './reviews/reviews';
 body {
     position: relative;
     height: 100%;
     margin: 0px;
-  }
+    min-height: 100vh;
+}
   .footer {
     position: absolute;
     bottom: 0px;
-    width: 100vw;
-    margin-bottom: -175px;
+    width: 100%;
+   // margin-bottom: -100px;
+}
+
+.chat-messages {
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 800px;
+  .avatar-message {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+  .message-container {
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    width: 500px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    .author {
+      display: flex;
+      justify-content: space-between;
+      span {
+        font-weight: bold;
+      }
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+.chat-messages-right {
+  margin-left:  700px;
+}
+
+.input-message {
+  width: 70%;
+  margin: 0 auto
+}
+
+.index-h4 {
+  color: black;
 }

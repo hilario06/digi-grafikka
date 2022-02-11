@@ -5,10 +5,14 @@
   <!--content de edit-->
   <div data-edit-design-target="infos" class="<%= 'd-none' if design.errors.any? %>">
     <div class="text-center">
-      <%= image_tag "#{design.image}", class: 'img-fluid mb-3 img-thumbnail shadow-sm' %>
+      <% if design.photo.key %>
+        <%= cl_image_tag design.photo.key, crop: :fill, class: 'img-fluid mb-3 shadow-sm' %>
+      <% else %>
+        <%= image_tag "#{design.image}", class: 'img-fluid mb-3 shadow-sm' %>
+      <% end %>
     </div>
     <h6 class="mb-0"><%= design.title %></h6>
-    <span class="small text-muted"><%= design.description %></span>
+    <span style='color: white; font-weight: 200;' class="small"><%= design.description %></span>
 
     <ul class="mb-0 list-inline mt-3">
       <!--<li class="list-inline-item">
@@ -35,6 +39,7 @@
    } do |f| -%>
     <%= f.input :title %>
     <%= f.input :description %>
+    <%= f.input :photo, as: :file %>
     <%= f.submit "Update design", class: "btn btn-sm btn-primary btn-block mt-2 button-digi-grafikka" %>
   <% end %>
 </div>
