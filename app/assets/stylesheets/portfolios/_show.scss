@@ -138,3 +138,15 @@
   justify-content: space-between;
   margin: 40px;
 }
+.container-reviews{
+  div{
+    a{
+      background-color: #22223B;
+      color: #fff;
+      &:hover{
+        color:#D85151;
+        background-color: #35354C;
+      }
+    }
+  }
+}
