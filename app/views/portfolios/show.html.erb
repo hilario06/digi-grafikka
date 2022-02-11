@@ -1,13 +1,24 @@
 <div class="portfolios-container">
   <div class='portfolios-banner'>
-    <%= image_tag("#{@portfolio.user.image}",
-      class: 'portfolios-perfil') %>
-      <% design = @portfolio.designs.sample %>
-    <% if design.photo.key %> 
-      <%= image_tag("#{@portfolio.designs.sample.image}", class: 'portfolios-background') %>
+
+    <% if @portfolio.user.image %>
+      <%= image_tag "#{@portfolio.user.image}", class: 'portfolios-perfil' %>
     <% else %>
-     <%= image_tag("background.png", class: 'portfolios-background') %>
+      <%= image_tag "avatar.png", class: 'portfolios-perfil' %>
     <% end %>
+
+    <% if @portfolio.designs.exists? %>
+      <% design = @portfolio.designs.sample %>
+      <% if design.photo.key %>
+        <%= cl_image_tag design.photo.key, crop: :fill, class: 'portfolios-background' %>
+      <% else %>
+        <%= image_tag("#{design.image}", class: 'portfolios-background') %>
+      <% end %>
+    <% else %>
+      <%= image_tag("background.png", class: 'portfolios-background') %>
+    <% end %>
+
+
   </div>
   <div class="container">
     <div class='portfolios-details'>
