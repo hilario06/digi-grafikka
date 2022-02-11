@@ -39,7 +39,7 @@
         <% if user_signed_in? %>
           <% if current_user == @portfolio.user %>
             <%= link_to 'Mis diseños', portfolio_designs_path(@portfolio), class: 'portfolios-btn' %>
-            <%= link_to 'Mi Chat', chats_portfolio_path(@portfolio), class: 'portfolios-btn' %>
+            <%= link_to 'Mi Chat', chatrooms_path, class: 'portfolios-btn' %>
           <% else %>
             <% if @portfolio.following?(current_user) %>
               <%= button_to "Siguiendo", follow_path(@portfolio), method: "put", remote: true, class: 'portfolios-btn' %>
@@ -146,7 +146,11 @@
             <div class="container-user">
               <div class="content-user">
                 <figure class="m-0">
-                  <%= image_tag "#{review.user.image}", width: 70, height: 70, class: 'img-fluid rounded-circle img-thumbnail shadow-sm img-user' %>
+                  <% if review.user.image %>
+                    <%= image_tag "#{review.user.image}", width: 70, height: 70, class: 'img-fluid rounded-circle img-thumbnail shadow-sm img-user' %>
+                  <% else %>
+                    <%= image_tag "avatar.png", width: 70, height: 70, class: 'img-fluid rounded-circle img-thumbnail shadow-sm img-user' %>
+                  <% end %>
                 </figure>
                 <div class="ps-2">
                   <p class="m-0"><%= review.user.name %> <%= review.user.last_name %></p>

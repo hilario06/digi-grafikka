@@ -29,6 +29,7 @@ body {
     position: absolute;
     bottom: 0px;
     width: 100%;
+    margin-bottom: -100px;
 }
 
 .chat-messages {
@@ -70,4 +71,8 @@ body {
 .input-message {
   width: 70%;
   margin: 0 auto
+}
+
+.index-h4 {
+  color: black;
 }
