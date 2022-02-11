@@ -2,7 +2,12 @@
   <div class='portfolios-banner'>
     <%= image_tag("#{@portfolio.user.image}",
       class: 'portfolios-perfil') %>
-    <%= image_tag("#{@portfolio.designs.sample.image}", class: 'portfolios-background') %>
+      <% design = @portfolio.designs.sample %>
+    <% if design.photo.key %> 
+      <%= image_tag("#{@portfolio.designs.sample.image}", class: 'portfolios-background') %>
+    <% else %>
+     <%= image_tag("background.png", class: 'portfolios-background') %>
+    <% end %>
   </div>
   <div class="container">
     <div class='portfolios-details'>
@@ -46,7 +51,7 @@
           <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contacto</button>
         </li>
       </ul>
-      <div class="tab-content" id="pills-tabContent">
+      <div class="tab-content" id="pills-tabContent" style='padding-bottom: 100px'>
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
           <div class='auto-grid-designs'>
             <% @portfolio.designs.each do |design| %>

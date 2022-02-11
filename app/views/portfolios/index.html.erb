@@ -39,32 +39,45 @@
           <div class="container-designs">
             <% @portfolio1 = portfolio.designs.sample %>
             <% @portfolio2 = portfolio.designs.sample %>
-            <% if @portfolio1.photo.key %>
-              <div>
-                <%= cl_image_tag @portfolio1.photo.key, crop: :fill %>
-              </div>
+            <% if portfolio.designs.exists? %>
+              <% if @portfolio1.photo.key %>
+                <div>
+                  <%= cl_image_tag @portfolio1.photo.key, crop: :fill %>
+                </div>
+              <% else %>
+                <div>
+                  <%= image_tag("#{@portfolio1.image}")  %>
+                </div>
+              <% end %>
+
+              <% if @portfolio2.photo.key %>
+                <div>
+                  <%= cl_image_tag @portfolio2.photo.key, crop: :fill %>
+                </div>
+              <% else %>
+                <div>
+                  <%= image_tag("#{@portfolio2.image}") %>
+                </div>
+              <% end %>
             <% else %>
               <div>
-                <%= image_tag("#{@portfolio1.image}") %>
-              </div>
+                  <%= image_tag("diseno1.jpg") %>
+                </div>
+                <div>
+                  <%= image_tag("diseno2.jpg") %>
+                </div>
             <% end %>
-
-            <% if @portfolio2.photo.key %>
-              <div>
-                <%= cl_image_tag @portfolio2.photo.key, crop: :fill %>
-              </div>
-            <% else %>
-              <div>
-                <%= image_tag("#{@portfolio2.image}") %>
-              </div>
-            <% end %>
-
 
           </div>
           <div class="container-tech text-center" style="margin-top: -30px">
             <%= link_to portfolio_path(portfolio) do %>
-              <%= image_tag "#{portfolio.user.image}", width: 100, style: 'background-color: #F1E9E4',
-              class: 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm img-user' %>
+              <% if portfolio.user.image %>
+                <%= image_tag "#{portfolio.user.image}", width: 100, style: 'background-color: #F1E9E4',
+                class: 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm img-user' %>
+              <% else %>
+                <%= image_tag "avatar.png", width: 100, style: 'background-color: #F1E9E4',
+                class: 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm img-user' %>
+              <% end %>
             <% end %>
             <h6 class="mb-0">
               <%= link_to "#{portfolio.user.name} #{portfolio.user.last_name}", portfolio_path(portfolio) %>

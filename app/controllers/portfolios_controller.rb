@@ -87,7 +87,7 @@ class PortfoliosController < ApplicationController
     # @portfolio = current_user.portfolios.new(portfolio_params)
     @portfolio = Portfolio.new(portfolio_params)
 
-    @portfolio.user_id = current_user
+    @portfolio.user = current_user
     # authorize @portfolio
     if @portfolio.save
       redirect_to portfolios_path
