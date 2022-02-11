@@ -4,8 +4,8 @@
                 action: 'submit->insert-design-in-list#send'
               }) do |f| %>
 
-    <%= f.input :title %>
-    <%= f.input :description %>
+    <%= f.input :title, label: 'Título de la imagen:' %>
+    <%= f.input :description, label: 'Descripción:' %>
     <%= f.input :photo, as: :file %>
     <%= f.submit "Guardar", class: "btn btn-sm mt-2 button-digi-grafikka" %>
 <% end %>
