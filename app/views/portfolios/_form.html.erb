@@ -1,14 +1,23 @@
 <%= simple_form_for(portfolio) do |f| %>
   <div class="form-inputs" style="color:black">
-    <%= f.input :about, label: 'Agrega una descripción personal para que te conozcan:' %>
-    <%= f.input :career, label: 'Agrega tus estudios profesionales:' %>
-    <%= f.input :years_of_experience, label: '¿Cuántos años tienes de experiencia?:' %>
-    <%= f.input :technology_ids, as: :select, label: 'Tecnologías:',
+    <div class="mb-3">
+      <%= f.input :about, label: 'Agrega una descripción personal para que te conozcan:', style: 'margin-bottom: 15px;' %>
+    </div>
+    <div class="mb-3">
+      <%= f.input :career, label: 'Agrega tus estudios profesionales:' %>
+    </div>
+    <div class="mb-3">
+      <%= f.input :years_of_experience, label: '¿Cuántos años tienes de experiencia?:' %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.input :technology_ids, as: :select, label: 'Tecnologías:',
             hint: '(Presiona la tecla Ctrl para seleccionar más de una opción)',
             collection: Technology.order(:name), label_method: :name, input_html: { multiple: true } %>
+    </div>
   </div>
 
-  <div class="form-actions">
+  <div class="form-actions" style="padding-bottom: 140px;">
     <%= f.submit 'Add portfolio', class: 'btn btn-primary mt-2' %>
   </div>
 <% end %>
