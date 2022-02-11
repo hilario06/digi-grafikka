@@ -69,14 +69,18 @@
   .button-card-portfolio{
     .mensaje{
       a{
-        background-color: transparent;
-        border: 1px solid transparent;
-        border-color: #dee8ff;
+        background-color: #22223B;
+        border: 1.5px solid #dee8ff;
         //color: #003ecb;
         color: #fff;
         text-decoration: none;
         padding: 8px 50px;
         border-radius: 20px;
+        &:hover{
+          background-color: #F1E9E4;
+          border: 1.5px solid #dee8ff;
+          color:#000;
+        }
       }
     }
   }

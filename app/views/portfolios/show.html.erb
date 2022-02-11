@@ -135,79 +135,82 @@
     </div>
 
 
-    <div class='reviews-show mt-5'>
-    <br>
-      <% if @portfolio.reviews.blank? %>
-        <p><i class="far fa-comment-alt"></i>&nbsp; Sé el primero en dejar un comentario</p>
-      <% else %>
-        <h4 class="mb-3">Comentarios</h4>
-        <% @portfolio.reviews.order('created_at DESC').each do |review| %>
-          <div class="container-reviews">
-            <div class="container-user">
-              <div class="content-user">
-                <figure class="m-0">
-                  <% if review.user.image %>
-                    <%= image_tag "#{review.user.image}", width: 70, height: 70, class: 'img-fluid rounded-circle img-thumbnail shadow-sm img-user' %>
-                  <% else %>
-                    <%= image_tag "avatar.png", width: 70, height: 70, class: 'img-fluid rounded-circle img-thumbnail shadow-sm img-user' %>
-                  <% end %>
-                </figure>
-                <div class="ps-2">
-                  <p class="m-0"><%= review.user.name %> <%= review.user.last_name %></p>
-                  <p class="small text-muted m-0">
-                    <% review.rating.times do  %>
-                      <i class="fas fa-star" style='color: #FFCE00'></i>
-                    <% end %>
-                    <% review.blank_stars.times do %>
-                      <i class="far fa-star" style='color: #FFCE00'></i>
-                    <% end %> &nbsp;|&nbsp;
-                    <%= review.created_at.utc.localtime("-05:00").strftime("%h %d, %Y - %I:%M %p") %>
-                  </p>
+    <div data-controller="insert-review-in-list" data-insert-in-list-position-value="beforeend">
 
-                  <div class="content-body-review">
-                    <div>
-                      <h6 style="margin-bottom: 2px;"><%= review.title %></h6>
-                      <p><%= review.content %></p>
+      <div class='reviews-show mt-5'>
+        <br>
+        <% if @portfolio.reviews.blank? %>
+          <p><i class="far fa-comment-alt"></i>&nbsp; Sé el primero en dejar un comentario</p>
+        <% else %>
+          <h4 class="mb-3">Comentarios</h4>
+          <% @portfolio.reviews.order('created_at DESC').each do |review| %>
+            <div class="container-reviews" data-insert-review-in-list-target="items">
+              <div class="container-user">
+                <div class="content-user">
+                  <figure class="m-0">
+                    <% if review.user.image %>
+                      <%= image_tag "#{review.user.image}", width: 70, height: 70, class: 'img-fluid rounded-circle img-thumbnail shadow-sm img-user' %>
+                    <% else %>
+                      <%= image_tag "avatar.png", width: 70, height: 70, class: 'img-fluid rounded-circle img-thumbnail shadow-sm img-user' %>
+                    <% end %>
+                  </figure>
+                  <div class="ps-2">
+                    <p class="m-0"><%= review.user.name %> <%= review.user.last_name %></p>
+                    <p class="small text-muted m-0">
+                      <% review.rating.times do  %>
+                        <i class="fas fa-star" style='color: #FFCE00'></i>
+                      <% end %>
+                      <% review.blank_stars.times do %>
+                        <i class="far fa-star" style='color: #FFCE00'></i>
+                      <% end %> &nbsp;|&nbsp;
+                      <%= review.created_at.utc.localtime("-05:00").strftime("%h %d, %Y - %I:%M %p") %>
+                    </p>
+
+                    <div class="content-body-review">
+                      <div>
+                        <h6 style="margin-bottom: 2px;"><%= review.title %></h6>
+                        <p><%= review.content %></p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="pe-3">
-                <% if user_signed_in? && review.user == current_user %>
-                  <%= link_to review_path(review, :portfolio_id => review.portfolio),
-                    method: :delete,
-                    class: 'product-remove rounded-circle btn',
-                    data: { confirm: "¿Estás seguro?" } do %>
-                    <i class="fas fa-trash"></i>
+                <div class="pe-3">
+                  <% if user_signed_in? && review.user == current_user %>
+                    <%= link_to review_path(review, :portfolio_id => review.portfolio),
+                      method: :delete,
+                      class: 'product-remove rounded-circle btn',
+                      data: { confirm: "¿Estás seguro?" } do %>
+                      <i class="fas fa-trash"></i>
+                    <% end %>
                   <% end %>
-                <% end %>
+                </div>
               </div>
             </div>
-
-
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-
-    <% if user_signed_in? %>
-      <hr>
-      <div class='review-form' style="padding-bottom: 140px;">
-        <p class=''>Introduce tu comentario</p>
-        <%= simple_form_for([ @portfolio, @review ], remote: true) do |f| %>
-          <div class="flex-inputs">
-            <%= f.input :title, placeholder: "Titulo", class: "m-2" %>
-            <%= f.input :rating, placeholder: "Valoración" %>
-          </div>
-          <div class="flex-inputs">
-            <%= f.input :content, as: :text, placeholder: "Comentario",class: "m-2" %>
-          </div>
-          <div class='text-right'>
-            <%= f.submit 'Agregar Comentario', class: 'btn btn-outline-primary button-digi-grafikka mb-3' %>
-          </div>
+          <% end %>
         <% end %>
       </div>
-    <% end %>
+
+      <% if user_signed_in? %>
+        <hr>
+        <div class='review-form' style="padding-bottom: 140px;">
+          <p class=''>Introduce tu comentario</p>
+
+          <%= simple_form_for([ @portfolio, @review ], remote: true) do |f| %>
+            <div class="flex-inputs">
+              <%= f.input :title, placeholder: "Titulo", class: "m-2" %>
+              <%= f.input :rating, placeholder: "Valoración" %>
+            </div>
+            <div class="flex-inputs">
+              <%= f.input :content, as: :text, placeholder: "Comentario",class: "m-2" %>
+            </div>
+            <div class='text-right'>
+              <%= f.submit 'Agregar Comentario', class: 'btn btn-outline-primary button-digi-grafikka mb-3' %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+    </div>
 
   </div>
 </div>
