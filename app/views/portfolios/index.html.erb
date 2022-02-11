@@ -102,8 +102,14 @@
           </div>
           <div class="button-card-portfolio mt-4" >
             <p class="text-center mensaje" >
-              <%= link_to has_chat_path(:portfolio_id => portfolio), method: "post", class: 'portfolios-btn'  do %>
-                <i class="fas fa-envelope"></i></i>&nbsp;&nbsp;Mensaje
+              <% if user_signed_in? %>
+                <%= link_to has_chat_path(:portfolio_id => portfolio), method: "post", class: 'portfolios-btn'  do %>
+                  <i class="fas fa-envelope"></i></i>&nbsp;&nbsp;Mensaje
+                <% end %>
+              <% else %>
+                <%= link_to user_session_path, class: 'portfolios-btn'  do %>
+                  <i class="fas fa-envelope"></i></i>&nbsp;&nbsp;Mensaje
+                <% end %>
               <% end %>
             </p>
           </div>
