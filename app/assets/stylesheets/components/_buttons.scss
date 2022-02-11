@@ -79,3 +79,38 @@ left:700px;
     color: white;
     transform: translateY(-3%);
 }
+
+.btn-card-home{
+  background-color:whitesmoke;
+	color:  #D7349A;
+	padding: 10px 20px;
+	border-radius: 8px;
+	font-family: 'Roboto',sans-serif;
+	text-decoration: none;
+  position:relative;
+  transition: .5s ease;
+}
+
+.btn-card-home:hover{
+    background-color: #D7349A;
+    color: white;
+    transform: translateY(-3%);
+}
+.button-card-portfolios{
+
+	background-color:whitesmoke;
+	color:  #D7349A;
+	padding: 10px 20px;
+	border-radius: 8px;
+	font-family: 'Roboto',sans-serif;
+	text-decoration: none;
+  position:relative;
+  transition: .5s ease;
+  bottom:350px;
+  left:700px;
+}
+.button-card-portfolios:hover{
+    background-color: #D7349A;
+    color: white;
+    transform: translateY(-3%);
+}

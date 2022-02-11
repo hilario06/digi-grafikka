@@ -1,0 +1,41 @@
+.container-reviews{
+  .container-user{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .content-user{
+      display: flex;
+      align-items: center;
+      figure{
+        align-self: flex-start;
+      }
+    }
+  }
+
+  .content-body-review{
+    display: flex;
+  }
+}
+.review-form{
+  form{
+    .flex-inputs{
+      width: 50%;
+      div{
+        label{
+          display: none;
+        }
+        input{
+          margin-bottom: 8px
+        }
+        textarea{
+          margin-bottom: 8px
+        }
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      .flex-inputs{
+        width: 100%;
+      }
+    }
+  }
+}

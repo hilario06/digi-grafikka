@@ -82,7 +82,7 @@ function initImagePopup(elem) {
         popUpBackground.classList.remove('active');
         setTimeout(function () {
           popupContainer.remove();
-        }, 300);
+        }, 200);
       }
 
     }

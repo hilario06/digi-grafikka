@@ -2,6 +2,10 @@
   .follower{
     display: flex;
     align-items: center;
+    transition: all 0.25s;
+    &:hover{
+      transform: translateX(-10px);
+    }
     img{
       background-color: cadetblue;
     }

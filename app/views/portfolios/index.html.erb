@@ -1,84 +1,120 @@
-<div class='sort-container'>
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-      Escoge una tecnología
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li>
-          <%= link_to 'Todas', portfolios_path, 
-            class: "dropdown-item", style: 'display: inline' %>
-      </li>
-      <% @technologies.each do |technology| %>
+<div style="background-color: #F1E9E4; margin-top: 20px;" class="pb-3">
+  <div class='sort-container' style='margin-bottom: 20px'>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Escoge una tecnología
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li>
-          <%= link_to technology, technology_path(technology),
-            class: "dropdown-item", style: 'display: inline' %>
+            <%= link_to 'Todas', portfolios_path,
+              class: "dropdown-item", style: 'display: inline' %>
         </li>
-      <% end %>
-    </ul>
+        <% @technologies.each do |technology| %>
+          <li>
+            <%= link_to technology, technology_path(technology),
+              class: "dropdown-item", style: 'display: inline' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Ordenar por
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <% @filters.each do |filter| %>
+          <li>
+            <%= link_to filter, filter_path(filter),
+              class: "dropdown-item", style: 'display: inline' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
+  <div class="container" style='margin-bottom: 150px'>
+    <div class="auto-grid-designs">
+      <% @portfolios.each do |portfolio| %>
+        <div class="rounded shadow-sm pb-3 card card-index-porfios" style='background-color: rgba(33, 34, 59, 0.9)'>
+          <div class="container-designs">
+            <% @portfolio1 = portfolio.designs.sample %>
+            <% @portfolio2 = portfolio.designs.sample %>
+            <% if portfolio.designs.exists? %>
+              <% if @portfolio1.photo.key %>
+                <div>
+                  <%= cl_image_tag @portfolio1.photo.key, crop: :fill %>
+                </div>
+              <% else %>
+                <div>
+                  <%= image_tag("#{@portfolio1.image}")  %>
+                </div>
+              <% end %>
 
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-      Ordenar por
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <% @filters.each do |filter| %>
-        <li>
-          <%= link_to filter, filter_path(filter),
-            class: "dropdown-item", style: 'display: inline' %>
-        </li>
+              <% if @portfolio2.photo.key %>
+                <div>
+                  <%= cl_image_tag @portfolio2.photo.key, crop: :fill %>
+                </div>
+              <% else %>
+                <div>
+                  <%= image_tag("#{@portfolio2.image}") %>
+                </div>
+              <% end %>
+            <% else %>
+              <div>
+                  <%= image_tag("diseno1.jpg") %>
+                </div>
+                <div>
+                  <%= image_tag("diseno2.jpg") %>
+                </div>
+            <% end %>
+
+          </div>
+          <div class="container-tech text-center" style="margin-top: -30px">
+            <%= link_to portfolio_path(portfolio) do %>
+              <% if portfolio.user.image %>
+                <%= image_tag "#{portfolio.user.image}", width: 100, style: 'background-color: #F1E9E4',
+                class: 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm img-user' %>
+              <% else %>
+                <%= image_tag "avatar.png", width: 100, style: 'background-color: #F1E9E4',
+                class: 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm img-user' %>
+              <% end %>
+            <% end %>
+            <h6 class="mb-0">
+              <%= link_to "#{portfolio.user.name} #{portfolio.user.last_name}", portfolio_path(portfolio) %>
+            </h6>
+            <span style='color: white; font-weight: 200' class="small "><i class="fas fa-map-marker-alt"></i><%= " #{portfolio.user.address}" %></span>
+
+            <div class='index-technologies'>
+              <% portfolio.tag_list.split(', ').each do |technology| %>
+              <p><%= image_tag("#{technology}-logo.png", style: 'height: 30px') %></p>
+            <% end %>
+            </div>
+          </div>
+          <div class="content-favorites-and-likes">
+            <div>
+              <p class="m-0 text-center"><%= "#{portfolio.total_followers} " %></p>
+              <p style="color: white" class="small m-0 text-center">seguidores</p>
+            </div>
+            <div>
+              <p class="m-0 text-center"><%= "#{portfolio.total_likes.round(0)} " %></p>
+              <p style="color: white" class="small m-0 text-center">likes</p>
+            </div>
+          </div>
+          <div class="button-card-portfolio mt-4" >
+            <p class="text-center mensaje" >
+              <% if user_signed_in? %>
+                <%= link_to has_chat_path(:portfolio_id => portfolio), method: "post", class: 'portfolios-btn'  do %>
+                  <i class="fas fa-envelope"></i></i>&nbsp;&nbsp;Mensaje
+                <% end %>
+              <% else %>
+                <%= link_to user_session_path, class: 'portfolios-btn'  do %>
+                  <i class="fas fa-envelope"></i></i>&nbsp;&nbsp;Mensaje
+                <% end %>
+              <% end %>
+            </p>
+          </div>
+        </div>
       <% end %>
-    </ul>
-  </div>
-</div>
-
-
-<div class="container my-4">
-  <div class="auto-grid-designs">
-    <% @portfolios.each do |portfolio| %>
-      <div class="bg-white rounded shadow-sm pb-3 card card-index-porfios">
-        <div class="container-designs">
-          <div>
-            <%= image_tag("#{portfolio.designs.sample.image}", class:"") %>
-          </div>
-          <div>
-            <%= image_tag("#{portfolio.designs.sample.image}", class:"") %>
-          </div>
-        </div>
-        <div class="container-tech text-center" style="margin-top: -30px">
-          <%= link_to portfolio_path(portfolio) do %>
-            <%= image_tag "#{portfolio.user.image}", width: 100, class: 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm img-user' %>
-          <% end %>
-          <h6 class="mb-0">
-            <%= link_to "#{portfolio.user.name} #{portfolio.user.last_name}", portfolio_path(portfolio) %>
-          </h6>
-          <span class="small text-muted"><i class="fas fa-map-marker-alt"></i><%= " #{portfolio.user.address}" %></span>
-
-          <div class='index-technologies'>
-            <% portfolio.tag_list.split(', ').each do |technology| %>
-            <p><%= image_tag("#{technology}-logo.png", style: 'height: 30px') %></p>
-          <% end %>
-          </div>
-        </div>
-        <div class="content-favorites-and-likes">
-          <div>
-            <p class="m-0 text-center"><%= "#{portfolio.total_followers} " %></p>
-            <p class="small text-muted m-0 text-center">seguidores</p>
-          </div>
-          <div>
-            <p class="m-0 text-center"><%= "#{portfolio.total_likes.round(0)} " %></p>
-            <p class="small text-muted m-0 text-center">likes</p>
-          </div>
-        </div>
-        <div class="button-card-portfolio mt-4">
-          <p class="text-center seguir">
-            <a href="#"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Seguir</a>
-          </p>
-          <p class="text-center mensaje">
-            <a href="#"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Mensaje</a>
-          </p>
-        </div>
-      </div>
-    <% end %>
+    </div>
   </div>
 </div>

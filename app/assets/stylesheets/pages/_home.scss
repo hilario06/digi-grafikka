@@ -1,13 +1,25 @@
 // Specific CSS for your home-page
-body{
-	background-color: #22223B;
-}
 .formulario{
   position: relative;
 }
 .input-group{
   position: absolute;
- width: 350px;
+  width: 350px;
   bottom: 400px;
-right:90px;
+  right:90px;
+}
+.btn-login-digigraffika{
+  background-color: #D7349A;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: 'Roboto',sans-serif;
+  text-decoration: none;
+  position: relative;
+  transition: .5s ease;
+  &:hover{
+    background-color: white;
+    color: #D7349A;
+    transform: translateY(-3%);
+  }
 }

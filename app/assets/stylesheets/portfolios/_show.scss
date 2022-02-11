@@ -25,6 +25,12 @@
       font-size: 20px;
       padding: 15px;
       border-radius: 5px;
+      border: 2px solid transparent;
+      &:hover{
+        border: 2px solid #22223B;
+        background-color: transparent;
+        color: #22223B;
+      }
     }
 
     ul{
@@ -34,6 +40,9 @@
           color: #000;
           font-style: oblique;
           font-size: 23px;
+          &:hover{
+            background-color: white;
+          }
         }
         .nav-link.active{
           background-color: white;
@@ -44,10 +53,33 @@
       }
     }
     .auto-grid-designs{
+
       --auto-grid-min-size: 20rem;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
       grid-gap: 1rem;
+      .card{
+        transition: all 0.25s;
+        &:hover{
+          transform: translateY(-10px);
+        }
+        .card-body{
+          span{
+            a{
+              i{
+                transition: all 0.25s;
+                font-size: 32px;
+                color: #A77F69;
+                &:hover{
+                  //transform: translate(-5px);
+                  font-size: 33px;
+                  color:#613f2d;
+                }
+              }
+            }
+          }
+        }
+      }
     }
 
 }
@@ -105,4 +137,16 @@
   display: flex;
   justify-content: space-between;
   margin: 40px;
+}
+.container-reviews{
+  div{
+    a{
+      background-color: #22223B;
+      color: #fff;
+      &:hover{
+        color:#D85151;
+        background-color: #35354C;
+      }
+    }
+  }
 }

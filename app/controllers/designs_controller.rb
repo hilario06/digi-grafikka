@@ -61,7 +61,7 @@ class DesignsController < ApplicationController
     # else
       # render :edit
     # end
-    @design.update(params.require(:design).permit(:title, :description))
+    @design.update(params.require(:design).permit(:title, :description, :photo))
     respond_to do |format|
       format.html { redirect_to portfolio_designs_path(@design.portfolio_id) }
       format.text { render partial: 'designs/design', locals: { design: @design }, formats: [:html] }
@@ -81,6 +81,6 @@ class DesignsController < ApplicationController
   private
 
   def design_params
-    params.require(:design).permit(:title, :description, :portfolio_id)
+    params.require(:design).permit(:title, :description, :portfolio_id, :photo)
   end
 end
