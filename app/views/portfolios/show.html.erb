@@ -190,26 +190,26 @@
         <% end %>
       </div>
 
-      <% if user_signed_in? %>
-        <hr>
-        <div class='review-form' style="padding-bottom: 140px;">
-          <p class=''>Introduce tu comentario</p>
+      <div class='review-form' style="padding-bottom: 140px;">
+        <% if user_signed_in? %>
+            <hr>
 
-          <%= simple_form_for([ @portfolio, @review ], remote: true) do |f| %>
-            <div class="flex-inputs">
-              <%= f.input :title, placeholder: "Titulo", class: "m-2" %>
-              <%= f.input :rating, placeholder: "Valoración" %>
-            </div>
-            <div class="flex-inputs">
-              <%= f.input :content, as: :text, placeholder: "Comentario",class: "m-2" %>
-            </div>
-            <div class='text-right'>
-              <%= f.submit 'Agregar Comentario', class: 'btn btn-outline-primary button-digi-grafikka mb-3' %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+            <p class=''>Introduce tu comentario</p>
+            <%= simple_form_for([ @portfolio, @review ], remote: true) do |f| %>
+              <div class="flex-inputs">
+                <%= f.input :title, placeholder: "Titulo", class: "m-2" %>
+                <%= f.input :rating, placeholder: "Valoración" %>
+              </div>
+              <div class="flex-inputs">
+                <%= f.input :content, as: :text, placeholder: "Comentario",class: "m-2" %>
+              </div>
+              <div class='text-right'>
+                <%= f.submit 'Agregar Comentario', class: 'btn btn-outline-primary button-digi-grafikka mb-3' %>
+              </div>
+            <% end %>
 
+        <% end %>
+      </div>
     </div>
 
   </div>
